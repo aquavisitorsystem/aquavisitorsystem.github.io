@@ -271,43 +271,43 @@ firebase.initializeApp(firebaseConfig);
         }
 
         var sendcheckedin = function(){
-            if (varto_name === 'walkin@aqua-aerobic.com'){
-                varto_name = 'ckonkol@aqua-aerobic.com';   
-            }
-            var templateParams = {
-                "from_name" : varfrom_name,
-                "to_name" : varto_name,
-                "to_email" : varto_email,
-                "cc_email" : cc_email
-            };
-            emailjs.send('service_aqua', 'template_checkedin', templateParams)
-             .then(function(response) {
-                 console.log('SUCCESS!', response.status, response.text);
-             }, function(error) {
-                 console.log('FAILED...', error);
-             });
+            // if (varto_name === 'walkin@aqua-aerobic.com'){
+            //     varto_name = 'ckonkol@aqua-aerobic.com';   
+            // }
+            // var templateParams = {
+            //     "from_name" : varfrom_name,
+            //     "to_name" : varto_name,
+            //     "to_email" : varto_email,
+            //     "cc_email" : cc_email
+            // };
+            // emailjs.send('service_aqua', 'template_checkedin', templateParams)
+            //  .then(function(response) {
+            //      console.log('SUCCESS!', response.status, response.text);
+            //  }, function(error) {
+            //      console.log('FAILED...', error);
+            //  });
 		
         }
    
         var sendcheckedout = function(){
-            if (varto_name === 'walkin@aqua-aerobic.com'){
-                varto_name = 'ckonkol@aqua-aerobic.com';   
-            }
-            var reset = "https://aquavisitorsystem.github.io/?resetid=" + fldkey + "&Remove=Return";
-            var changedate = "https://aquavisitorsystem.github.io/?id=" + fldkey;
-            var templateParams = {
-                "from_name" : varfrom_name,
-                "to_name" : varto_name,
-                "to_email" : varto_email,
-                "cc_email" : cc_email,
-                "reset" : reset
-            };
-            emailjs.send('service_aqua', 'template_checkedout', templateParams)
-             .then(function(response) {
-                 console.log('SUCCESS!', response.status, response.text);
-             }, function(error) {
-                 console.log('FAILED...', error);
-             });
+            // if (varto_name === 'walkin@aqua-aerobic.com'){
+            //     varto_name = 'ckonkol@aqua-aerobic.com';   
+            // }
+            // var reset = "https://aquavisitorsystem.github.io/?resetid=" + fldkey + "&Remove=Return";
+            // var changedate = "https://aquavisitorsystem.github.io/?id=" + fldkey;
+            // var templateParams = {
+            //     "from_name" : varfrom_name,
+            //     "to_name" : varto_name,
+            //     "to_email" : varto_email,
+            //     "cc_email" : cc_email,
+            //     "reset" : reset
+            // };
+            // emailjs.send('service_aqua', 'template_checkedout', templateParams)
+            //  .then(function(response) {
+            //      console.log('SUCCESS!', response.status, response.text);
+            //  }, function(error) {
+            //      console.log('FAILED...', error);
+            //  });
 		
         }
       
@@ -9083,8 +9083,56 @@ console.log(g_logvalue);
 function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
+
+// empty string
+if ((checkin != null && checkin != '') &&  (keyid != null && keyid != '')) {
+    console.log('string is NOT empty');	
+    if (checkin === 'walkin'){
+        var gdate77 = g_date;
+        document.getElementById('schedule').style.display = 'none';
+        document.getElementById('getall').style.display = 'none';
+        document.getElementById('header').style.display = 'none';
+        document.getElementById('logo').style.display = 'none';
+        var data = {
+            "login": 'walkin',
+            "key": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + gdate77,
+            "fname": g_fname.trim().toUpperCase(),
+            "lname": g_lname.trim().toUpperCase(),
+            "email": g_email.trim().toUpperCase(),
+            "cname": g_cname.trim().toUpperCase(),
+            "msg": g_message.trim().toUpperCase(), 
+            "date": gdate77
+        }
+        var data1 = {
+            "checkin": checkin,
+            "id": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + gdate77
+        }
+        push_to_firebase(data);
+        g_fname = '';
+        g_lname = '';
+        g_email = '';
+        g_cname = '';
+        g_message = '';
+        sleep(3000).then(() => {
+  get_checkin_data(data1);
+    });
+}else{
+    document.getElementById('schedule').style.display = 'none';
+    document.getElementById('getall').style.display = 'none';
+    document.getElementById('header').style.display = 'none';
+    document.getElementById('logo').style.display = 'none';
+    var data3 = {
+        "checkin": checkin,
+        "id": keyid
+    }
+    get_checkin_data(data3);
+}
+console.log("g_lname: " + g_lname);
+console.log("g_cname: " + g_cname);
+
+} 
 	    
-if (g_today != null && g_today != '') {
+if (g_today != null && g_today != '')  {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('schedule').style.display = 'none';
     document.getElementById('getall').style.display = 'none';
@@ -9106,7 +9154,7 @@ if (g_load === null) {
     console.log(g_load);
 }  
 
-if (g_cname != null) {
+if ((g_cname != null) && (checkin === null || checkin === '') &&  (keyid === null || keyid === '')) {
     var data = {
         "companyname": g_cname,
     }
@@ -9116,7 +9164,7 @@ if (g_cname != null) {
     console.log('string IS empty');
 }  
 
-if (g_lname != null) {
+if ((g_lname != null) && (checkin === null || checkin === '') &&  (keyid === null || keyid === '')) {
     var data = {
         "lastname": g_lname,
     }
@@ -9307,47 +9355,6 @@ if (g_iPadid != null && g_iPadid != '') {
     console.log('string IS empty');
 }
       
-// empty string
-if ((checkin != null && checkin != '') &&  (keyid != null && keyid != '')) {
-    console.log('string is NOT empty');	
-    if (checkin === 'walkin'){
-        document.getElementById('schedule').style.display = 'none';
-        document.getElementById('getall').style.display = 'none';
-        document.getElementById('header').style.display = 'none';
-        document.getElementById('logo').style.display = 'none';
-        var data = {
-            "login": 'walkin',
-            "key": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + g_date,
-            "fname": g_fname.trim().toUpperCase(),
-            "lname": g_lname.trim().toUpperCase(),
-            "email": g_email.trim().toUpperCase(),
-            "cname": g_cname.trim().toUpperCase(),
-            "msg": g_message.trim().toUpperCase(), 
-            "date": g_date
-        }
-        push_to_firebase(data);
-        sleep(3000).then(() => {
-            var data1 = {
-                "checkin": checkin,
-                "id": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + g_date
-            }
-  get_checkin_data(data1);
-    });
-}else{
-    document.getElementById('schedule').style.display = 'none';
-    document.getElementById('getall').style.display = 'none';
-    document.getElementById('header').style.display = 'none';
-    document.getElementById('logo').style.display = 'none';
-    var data3 = {
-        "checkin": checkin,
-        "id": keyid
-    }
-    get_checkin_data(data3);
-}
- 
-} else {
-    console.log('string IS empty');
-}
 
 // empty string
 if ((checkin === null || checkin === '') &&  (keyid != null && keyid != '')) {
