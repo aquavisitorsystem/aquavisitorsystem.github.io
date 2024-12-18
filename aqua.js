@@ -271,43 +271,43 @@ firebase.initializeApp(firebaseConfig);
         }
 
         var sendcheckedin = function(){
-            // if (varto_name === 'walkin@aqua-aerobic.com'){
-            //     varto_name = 'ckonkol@aqua-aerobic.com';   
-            // }
-            // var templateParams = {
-            //     "from_name" : varfrom_name,
-            //     "to_name" : varto_name,
-            //     "to_email" : varto_email,
-            //     "cc_email" : cc_email
-            // };
-            // emailjs.send('service_aqua', 'template_checkedin', templateParams)
-            //  .then(function(response) {
-            //      console.log('SUCCESS!', response.status, response.text);
-            //  }, function(error) {
-            //      console.log('FAILED...', error);
-            //  });
+            if (varto_name === 'walkin@aqua-aerobic.com'){
+                varto_name = 'ckonkol@aqua-aerobic.com';   
+            }
+            var templateParams = {
+                "from_name" : varfrom_name,
+                "to_name" : varto_name,
+                "to_email" : varto_email,
+                "cc_email" : cc_email
+            };
+            emailjs.send('service_aqua', 'template_checkedin', templateParams)
+             .then(function(response) {
+                 console.log('SUCCESS!', response.status, response.text);
+             }, function(error) {
+                 console.log('FAILED...', error);
+             });
 		
         }
    
         var sendcheckedout = function(){
-            // if (varto_name === 'walkin@aqua-aerobic.com'){
-            //     varto_name = 'ckonkol@aqua-aerobic.com';   
-            // }
-            // var reset = "https://aquavisitorsystem.github.io/?resetid=" + fldkey + "&Remove=Return";
-            // var changedate = "https://aquavisitorsystem.github.io/?id=" + fldkey;
-            // var templateParams = {
-            //     "from_name" : varfrom_name,
-            //     "to_name" : varto_name,
-            //     "to_email" : varto_email,
-            //     "cc_email" : cc_email,
-            //     "reset" : reset
-            // };
-            // emailjs.send('service_aqua', 'template_checkedout', templateParams)
-            //  .then(function(response) {
-            //      console.log('SUCCESS!', response.status, response.text);
-            //  }, function(error) {
-            //      console.log('FAILED...', error);
-            //  });
+            if (varto_name === 'walkin@aqua-aerobic.com'){
+                varto_name = 'ckonkol@aqua-aerobic.com';   
+            }
+            var reset = "https://aquavisitorsystem.github.io/?resetid=" + fldkey + "&Remove=Return";
+            var changedate = "https://aquavisitorsystem.github.io/?id=" + fldkey;
+            var templateParams = {
+                "from_name" : varfrom_name,
+                "to_name" : varto_name,
+                "to_email" : varto_email,
+                "cc_email" : cc_email,
+                "reset" : reset
+            };
+            emailjs.send('service_aqua', 'template_checkedout', templateParams)
+             .then(function(response) {
+                 console.log('SUCCESS!', response.status, response.text);
+             }, function(error) {
+                 console.log('FAILED...', error);
+             });
 		
         }
       
