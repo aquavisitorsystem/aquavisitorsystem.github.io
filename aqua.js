@@ -936,7 +936,7 @@ document.getElementById("submit_msg").disabled = true;
         sendcheckedin();	
         log_create();	
         var data = {
-            "errormsg": "QR Code Reused for: " + varFName + " " + varLName 
+            "errormsg": "Reset and Checkedin again at:" + myTime + " for: " + varFName + " " + varLName 
         }
         error_log_create(data);
     }else{
