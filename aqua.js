@@ -7658,6 +7658,11 @@ var loadprintjobs = function() {
     if (cnt === 0){
         var nodata = "<center><br>No visitor data found<br></center>";
         document.write(nodata);
+        document.getElementById("numcount").innerHTML = 0;
+        document.getElementById("numcount").setAttribute("value", 0);
+        document.getElementById("numcount2").innerHTML = "(" +  "260/260 labels remain)";
+        document.getElementById("numcount2").setAttribute("value", "(" + "260/260 labels remain)");
+       // document.write("<table id='report' style='font-size: small;'>  <tr>     <th style='cursor: pointer; color: red;' onclick='sortTable(0)'>UserID <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>    <th>First Name</th>    <th style='cursor: pointer; color: red;' onclick='sortTable(2)'>Last Name <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>    <th>Company</th>     <th style='cursor: pointer; color: red;' onclick='sortTable(4)'>Date/Time <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>      <th>Email</th>       <th>Visiting</th><th style='cursor: pointer; color: red;' onclick='sortByDate2(7)'>CheckIn<i class='fa fa-sort' style='font-size:20px;color:blue'></i></th><th>CheckOut</th><th>Edit</th>  </tr>");
     }else{
         document.write("<table id='report' style='font-size: small;'>  <tr>     <th style='cursor: pointer; color: red;' onclick='sortTable(0)'>UserID <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>    <th>First Name</th>    <th style='cursor: pointer; color: red;' onclick='sortTable(2)'>Last Name <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>    <th>Company</th>     <th style='cursor: pointer; color: red;' onclick='sortTable(4)'>Date/Time <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>      <th>Email</th>       <th>Visiting</th><th style='cursor: pointer; color: red;' onclick='sortByDate2(7)'>CheckIn<i class='fa fa-sort' style='font-size:20px;color:blue'></i></th><th>CheckOut</th><th>Edit</th>  </tr>");
     }
@@ -7688,10 +7693,13 @@ var loadprintjobs = function() {
     }else{
         //document.write('<tr><td>' + doc.data().login + '</td><td>' + doc.data().firstname + '</td><td>' + doc.data().lastname + '</td><td>' + doc.data().company + '</td><td>' + dates + '</td><td>' + doc.data().email + '</td><td>' + doc.data().message + '</td><td>' + doc.data().checkin + '</td><td>' + doc.data().checkout + '</td><td><a href="https://aquavisitorsystem.github.io/?id=' + doc.data().sourcekey + '">Click here</a></td></tr>');
     }
-    document.getElementById("numcount").innerHTML = Math.ceil((cnt / 2));
-    document.getElementById("numcount").setAttribute("value", Math.ceil((cnt / 2)));
-    document.getElementById("numcount2").innerHTML = "(" + (260 - Math.ceil((cnt / 2)))  + "/260 labels remain)";
-    document.getElementById("numcount2").setAttribute("value", "(" + (260 - Math.ceil((cnt / 2))) + "/260 labels remain)");
+
+        document.getElementById("numcount").innerHTML = Math.ceil((cnt / 2));
+        document.getElementById("numcount").setAttribute("value", Math.ceil((cnt / 2)));
+        document.getElementById("numcount2").innerHTML = "(" + (260 - Math.ceil((cnt / 2)))  + "/260 labels remain)";
+        document.getElementById("numcount2").setAttribute("value", "(" + (260 - Math.ceil((cnt / 2))) + "/260 labels remain)");
+ 
+
 });
 // let sendingText = "https://ignitemeeting.github.io/?ipad=Yes"
 document.head.innerHTML = header;
@@ -7703,7 +7711,7 @@ document.getElementsByTagName("body")[0].style.display = "none";
     .catch((error) => {
         console.log("Error getting documents: ", error);
 document.write(title);
-var nodata = "<center><br>No visitor data found<br></center>";
+var nodata = "<center><br>No visitor data founds<br></center>";
 document.write(nodata);
 document.head.innerHTML = header;
 });
