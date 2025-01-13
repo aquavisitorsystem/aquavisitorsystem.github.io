@@ -8927,8 +8927,8 @@ var dailycheckout =  function(){
     var myDate = new Date(d).toLocaleDateString('en-US');   
     name = myDate.toString();
     var  todays = new Date().toLocaleDateString('en-US');  
-    db.collection("messages").where("date", ">=",start).where("date", "<=",end).where("remove", "==","No").where("checkout", "==","")
-    //db.collection("messages").where("remove", "==","No").where("checkin", "<>","").where("checkout", "==","")
+    //db.collection("messages").where("date", ">=",start).where("date", "<=",end).where("remove", "==","No").where("checkout", "==","")
+    db.collection("messages").where("remove", "==","No").where("checkin", ">","").where("checkout", "==","")
     //db.collection("messages").where("remove", "==","No").where("checkout", "==","")
 .get()
 .then((querySnapshot) => {
