@@ -8925,7 +8925,7 @@ var dailycheckout =  function(){
     end = new Date(end.getTime() - (end.getTimezoneOffset() * 60000)).toISOString();	 
     var d = new Date();
     var myDate = new Date(d).toLocaleDateString('en-US');   
-    name = myDate.toString();
+    var name = myDate.toString();
     var  todays = new Date().toLocaleDateString('en-US');  
     //db.collection("messages").where("date", ">=",start).where("date", "<=",end).where("remove", "==","No").where("checkout", "==","")
     db.collection("messages").where("remove", "==","No").where("checkin", ">","").where("checkout", "==","")
