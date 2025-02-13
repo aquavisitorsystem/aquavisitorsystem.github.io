@@ -1,4 +1,5 @@
 var x;
+var cookielive = 2;
 const getUA = () => {
     let device = "Unknown";
     const ua = {
@@ -50,14 +51,16 @@ jQuery.get('notification.txt', function(data) {
           // initialize title and body variables
         if (data.length > 3){
         var notifs = data;
-        var Titles = "Visitor Management System";
+        var Titles = "AQUA Visitor Management System";
     if (getCookie('vmspopup')) {
 		return;
     }
  
     createDialog(notifs , Titles);
             // The popup was displayed. Set the cookie for one year.
-    setCookie('vmspopup', 'yes', 365*24*60*60);
+            //days*24*60*60*1000
+    
+    setCookie('vmspopup', 'yes', cookielive*24*60*60);
 }
 });
 }
@@ -68,7 +71,7 @@ function  callback() {
         // initialize title and body variables
         if (data.length > 3){
             var notifs = data;
-            var Titles = "Visitor Management System";
+            var Titles = "AQUA Visitor Management System";
  
             createDialog(notifs , Titles);
 
