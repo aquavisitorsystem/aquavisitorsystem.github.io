@@ -1,5 +1,5 @@
 var x;
-var cookielive = 2;
+var cookielive = 30;
 const getUA = () => {
     let device = "Unknown";
     const ua = {
