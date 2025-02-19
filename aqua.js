@@ -9185,7 +9185,7 @@ if (g_report === 'activitylog') {
         var features = 'height=800,width=800,top='+theTop+',left='+theLeft+',toolbar=1,Location=0,Directories=0,Status=0,menubar=1,Scrollbars=1,Resizable=1';
 
         window.open("./activity/index.html", "Activity", features);
-        setTimeout("window.location.reload();", 3000);
+       // setTimeout("window.location.reload();", 3000);
 } else {
     console.log('string IS empty');
 }  
