@@ -9177,6 +9177,7 @@ if ((g_lname != null) && (checkin === null || checkin === '') &&  (keyid === nul
 }  
 
 if (g_report === 'activitylog') {
+	 clear();
       spinnow(3000);
         //window.location.href = './activity/index.html';
         //setTimeout("window.location.href = './activity/';", 3000);
