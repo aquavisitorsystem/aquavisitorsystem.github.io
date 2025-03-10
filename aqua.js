@@ -40,7 +40,8 @@ firebase.initializeApp(firebaseConfig);
     var varfrom_name = "";
     var varto_email = "";
     var varto_name = "";
-    var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com;SArbisi@aqua-aerobic.com";
+   var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com;SArbisi@aqua-aerobic.com";
+   // var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com";
     var key_checkin = "";
     var key_checkout = "";
     var gbit = "";
@@ -935,7 +936,7 @@ document.getElementById("submit_msg").disabled = true;
         sendcheckedin();	
         log_create();	
         var data = {
-            "errormsg": "QR Code Reused for: " + varFName + " " + varLName 
+            "errormsg": "Reset and Checkedin again at:" + myTime + " for: " + varFName + " " + varLName 
         }
         error_log_create(data);
     }else{
@@ -7657,6 +7658,11 @@ var loadprintjobs = function() {
     if (cnt === 0){
         var nodata = "<center><br>No visitor data found<br></center>";
         document.write(nodata);
+        document.getElementById("numcount").innerHTML = 0;
+        document.getElementById("numcount").setAttribute("value", 0);
+        document.getElementById("numcount2").innerHTML = "(" +  "260/260 labels remain)";
+        document.getElementById("numcount2").setAttribute("value", "(" + "260/260 labels remain)");
+       // document.write("<table id='report' style='font-size: small;'>  <tr>     <th style='cursor: pointer; color: red;' onclick='sortTable(0)'>UserID <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>    <th>First Name</th>    <th style='cursor: pointer; color: red;' onclick='sortTable(2)'>Last Name <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>    <th>Company</th>     <th style='cursor: pointer; color: red;' onclick='sortTable(4)'>Date/Time <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>      <th>Email</th>       <th>Visiting</th><th style='cursor: pointer; color: red;' onclick='sortByDate2(7)'>CheckIn<i class='fa fa-sort' style='font-size:20px;color:blue'></i></th><th>CheckOut</th><th>Edit</th>  </tr>");
     }else{
         document.write("<table id='report' style='font-size: small;'>  <tr>     <th style='cursor: pointer; color: red;' onclick='sortTable(0)'>UserID <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>    <th>First Name</th>    <th style='cursor: pointer; color: red;' onclick='sortTable(2)'>Last Name <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>    <th>Company</th>     <th style='cursor: pointer; color: red;' onclick='sortTable(4)'>Date/Time <i class='fa fa-sort' style='font-size:20px;color:blue'></i></th>      <th>Email</th>       <th>Visiting</th><th style='cursor: pointer; color: red;' onclick='sortByDate2(7)'>CheckIn<i class='fa fa-sort' style='font-size:20px;color:blue'></i></th><th>CheckOut</th><th>Edit</th>  </tr>");
     }
@@ -7687,10 +7693,13 @@ var loadprintjobs = function() {
     }else{
         //document.write('<tr><td>' + doc.data().login + '</td><td>' + doc.data().firstname + '</td><td>' + doc.data().lastname + '</td><td>' + doc.data().company + '</td><td>' + dates + '</td><td>' + doc.data().email + '</td><td>' + doc.data().message + '</td><td>' + doc.data().checkin + '</td><td>' + doc.data().checkout + '</td><td><a href="https://aquavisitorsystem.github.io/?id=' + doc.data().sourcekey + '">Click here</a></td></tr>');
     }
-    document.getElementById("numcount").innerHTML = Math.ceil((cnt / 2));
-    document.getElementById("numcount").setAttribute("value", Math.ceil((cnt / 2)));
-    document.getElementById("numcount2").innerHTML = "(" + (260 - Math.ceil((cnt / 2)))  + "/260 labels remain)";
-    document.getElementById("numcount2").setAttribute("value", "(" + (260 - Math.ceil((cnt / 2))) + "/260 labels remain)");
+
+        document.getElementById("numcount").innerHTML = Math.ceil((cnt / 2));
+        document.getElementById("numcount").setAttribute("value", Math.ceil((cnt / 2)));
+        document.getElementById("numcount2").innerHTML = "(" + (260 - Math.ceil((cnt / 2)))  + "/260 labels remain)";
+        document.getElementById("numcount2").setAttribute("value", "(" + (260 - Math.ceil((cnt / 2))) + "/260 labels remain)");
+ 
+
 });
 // let sendingText = "https://ignitemeeting.github.io/?ipad=Yes"
 document.head.innerHTML = header;
@@ -7702,7 +7711,7 @@ document.getElementsByTagName("body")[0].style.display = "none";
     .catch((error) => {
         console.log("Error getting documents: ", error);
 document.write(title);
-var nodata = "<center><br>No visitor data found<br></center>";
+var nodata = "<center><br>No visitor data founds<br></center>";
 document.write(nodata);
 document.head.innerHTML = header;
 });
@@ -8086,7 +8095,6 @@ if (typeof doc.data().date14 !== 'undefined' && doc.data().date14 !=="" && new D
 //resolve(RecordIDs);
 });
 //END
-
 //START
 db.collection("messages").where("fri", "==",true).where("remove", "==","No").get().then((querySnapshot) => {
 querySnapshot.forEach(doc => {
@@ -8110,8 +8118,7 @@ console.log("docs:" + docs);
 const chunkSize = 10;
 var chunk;
 let todays = new Date().toLocaleDateString();
-
-var header = "<head><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><style>table, td, th {  border: 1px solid #cbbbbb;  text-align: left;}table {  border-collapse: collapse;  width: 100%;}th, td {  padding: 15px;} tr:nth-child(even) {  background-color: #dddddd;}</style></head>";
+var header = "<head><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><style>table, td, th {  border: 1px solid #cbbbbb;  text-align: left;}table {  border-collapse: collapse;  width: 100%;}th, td {  padding: 10px;} tr:nth-child(even) {  background-color: #dddddd;}</style></head>";
 var title = "<div id='reptitle'><center><h1 style='color: #005098;margin-block-end: 0;'>Active Visitor(s) for: " + todays + "</h1></center></div>";      
 document.write(title);
 var links = "'https://aquameeting.github.io/?ipad=Yes'";
@@ -8328,7 +8335,7 @@ if (get_login  === null || get_login === '') {
 }else{
 get_login  = get_login.toString();
 console.log(get_login);
-var header = "<head><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><style>table, td, th {  border: 1px solid #cbbbbb;  text-align: left;}table {  border-collapse: collapse;  width: 100%;}th, td {  padding: 15px;} tr:nth-child(even) {  background-color: #dddddd;}</style></head>";
+var header = "<head><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><style>table, td, th {  border: 1px solid #cbbbbb;  text-align: left;}table {  border-collapse: collapse;  width: 100%;}th, td {  padding: 10px;} tr:nth-child(even) {  background-color: #dddddd;}</style></head>";
 var title = "<center><h1>Aqua-Aerobic Systems Visitor System Schedule</h1><h2>In-Active Visitor Schedule(s) for: " + get_login + "</h2><a href='https://aquavisitorsystem.github.io/'>Go Home</a><br></center>";      
      
  var lines = "";
@@ -8918,11 +8925,11 @@ var dailycheckout =  function(){
     end = new Date(end.getTime() - (end.getTimezoneOffset() * 60000)).toISOString();	 
     var d = new Date();
     var myDate = new Date(d).toLocaleDateString('en-US');   
-    name = myDate.toString();
+    var name = myDate.toString();
     var  todays = new Date().toLocaleDateString('en-US');  
     //db.collection("messages").where("date", ">=",start).where("date", "<=",end).where("remove", "==","No").where("checkout", "==","")
-    //db.collection("messages").where("remove", "==","No").where("checkin", "<>","").where("checkout", "==","")
-    db.collection("messages").where("remove", "==","No").where("checkout", "==","")
+    db.collection("messages").where("remove", "==","No").where("checkin", ">","").where("checkout", "==","")
+    //db.collection("messages").where("remove", "==","No").where("checkout", "==","")
 .get()
 .then((querySnapshot) => {
      console.log("Snapshot:" + querySnapshot.size); 
@@ -9083,8 +9090,51 @@ console.log(g_logvalue);
 function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
+
+// empty string
+if ((checkin != null && checkin != '') &&  (keyid != null && keyid != '')) {
+    console.log('string is NOT empty');	
+    if (checkin === 'walkin'){
+        var gdate77 = g_date;
+        document.getElementById('schedule').style.display = 'none';
+        document.getElementById('getall').style.display = 'none';
+        document.getElementById('header').style.display = 'none';
+        document.getElementById('logo').style.display = 'none';
+        var data = {
+            "login": 'walkin',
+            "key": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + gdate77,
+            "fname": g_fname.trim().toUpperCase(),
+            "lname": g_lname.trim().toUpperCase(),
+            "email": g_email.trim().toUpperCase(),
+            "cname": g_cname.trim().toUpperCase(),
+            "msg": g_message.trim().toUpperCase(), 
+            "date": gdate77
+        }
+        var data1 = {
+            "checkin": checkin,
+            "id": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + gdate77
+        }
+        push_to_firebase(data);
+        sleep(3000).then(() => {
+  get_checkin_data(data1);
+    });
+}else{
+    document.getElementById('schedule').style.display = 'none';
+    document.getElementById('getall').style.display = 'none';
+    document.getElementById('header').style.display = 'none';
+    document.getElementById('logo').style.display = 'none';
+    var data3 = {
+        "checkin": checkin,
+        "id": keyid
+    }
+    get_checkin_data(data3);
+}
+console.log("g_lname: " + g_lname);
+console.log("g_cname: " + g_cname);
+
+} 
 	    
-if (g_today != null && g_today != '') {
+if (g_today != null && g_today != '')  {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('schedule').style.display = 'none';
     document.getElementById('getall').style.display = 'none';
@@ -9106,7 +9156,7 @@ if (g_load === null) {
     console.log(g_load);
 }  
 
-if (g_cname != null) {
+if ((g_cname != null) && (checkin === null || checkin === '') &&  (keyid === null || keyid === '')) {
     var data = {
         "companyname": g_cname,
     }
@@ -9116,7 +9166,7 @@ if (g_cname != null) {
     console.log('string IS empty');
 }  
 
-if (g_lname != null) {
+if ((g_lname != null) && (checkin === null || checkin === '') &&  (keyid === null || keyid === '')) {
     var data = {
         "lastname": g_lname,
     }
@@ -9307,47 +9357,6 @@ if (g_iPadid != null && g_iPadid != '') {
     console.log('string IS empty');
 }
       
-// empty string
-if ((checkin != null && checkin != '') &&  (keyid != null && keyid != '')) {
-    console.log('string is NOT empty');	
-    if (checkin === 'walkin'){
-        document.getElementById('schedule').style.display = 'none';
-        document.getElementById('getall').style.display = 'none';
-        document.getElementById('header').style.display = 'none';
-        document.getElementById('logo').style.display = 'none';
-        var data = {
-            "login": 'walkin',
-            "key": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + g_date,
-            "fname": g_fname.trim().toUpperCase(),
-            "lname": g_lname.trim().toUpperCase(),
-            "email": g_email.trim().toUpperCase(),
-            "cname": g_cname.trim().toUpperCase(),
-            "msg": g_message.trim().toUpperCase(), 
-            "date": g_date
-        }
-        push_to_firebase(data);
-        sleep(3000).then(() => {
-            var data1 = {
-                "checkin": checkin,
-                "id": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + g_date
-            }
-  get_checkin_data(data1);
-    });
-}else{
-    document.getElementById('schedule').style.display = 'none';
-    document.getElementById('getall').style.display = 'none';
-    document.getElementById('header').style.display = 'none';
-    document.getElementById('logo').style.display = 'none';
-    var data3 = {
-        "checkin": checkin,
-        "id": keyid
-    }
-    get_checkin_data(data3);
-}
- 
-} else {
-    console.log('string IS empty');
-}
 
 // empty string
 if ((checkin === null || checkin === '') &&  (keyid != null && keyid != '')) {
