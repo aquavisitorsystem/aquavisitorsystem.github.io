@@ -272,7 +272,7 @@ firebase.initializeApp(firebaseConfig);
         }
 
         var sendcheckedin = function(){
-	/*
+	
             if (varto_name === 'walkin@aqua-aerobic.com'){
                 varto_name = 'ckonkol@aqua-aerobic.com';   
             }
@@ -288,11 +288,11 @@ firebase.initializeApp(firebaseConfig);
              }, function(error) {
                  console.log('FAILED...', error);
              });
-	*/	
+		
         }
    
         var sendcheckedout = function(){
-	/*
+	
             if (varto_name === 'walkin@aqua-aerobic.com'){
                 varto_name = 'ckonkol@aqua-aerobic.com';   
             }
@@ -311,7 +311,7 @@ firebase.initializeApp(firebaseConfig);
              }, function(error) {
                  console.log('FAILED...', error);
              });
-	*/	
+		
         }
       
         var updateremoveYes = function(data){
