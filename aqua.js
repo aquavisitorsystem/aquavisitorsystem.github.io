@@ -276,9 +276,9 @@ firebase.initializeApp(firebaseConfig);
                 varto_name = 'ckonkol@aqua-aerobic.com';   
             }
             var templateParams = {
-                "from_name" : varfrom_name,
-                "to_name" : varto_name,
-                "to_email" : varto_email,
+		"from_name" : fldfirstname.trim + ' ' + fldlastname.trim,
+                "to_name" : fldmessage.trim,
+                "to_email" : fldlogin.trim + '@aqua-aerobic.com',
                 "cc_email" : cc_email
             };
             emailjs.send('service_aqua', 'template_checkedin', templateParams)
@@ -287,6 +287,9 @@ firebase.initializeApp(firebaseConfig);
              }, function(error) {
                  console.log('FAILED...', error);
              });
+	       //"from_name" : varfrom_name,
+               // "to_name" : varto_name,
+               // "to_email" : varto_email,
         }
    
         var sendcheckedout = function(){
@@ -296,9 +299,9 @@ firebase.initializeApp(firebaseConfig);
             var reset = "https://aquavisitorsystem.github.io/?resetid=" + fldkey + "&Remove=Return";
             var changedate = "https://aquavisitorsystem.github.io/?id=" + fldkey;
             var templateParams = {
-                "from_name" : varfrom_name,
-                "to_name" : varto_name,
-                "to_email" : varto_email,
+		"from_name" : fldfirstname.trim + ' ' + fldlastname.trim,
+                "to_name" : fldmessage.trim,
+                "to_email" : fldlogin.trim + '@aqua-aerobic.com',
                 "cc_email" : cc_email,
                 "reset" : reset
             };
@@ -308,6 +311,9 @@ firebase.initializeApp(firebaseConfig);
              }, function(error) {
                  console.log('FAILED...', error);
              });
+		//"from_name" : varfrom_name,
+               // "to_name" : varto_name,
+                //"to_email" : varto_email,
         }
       
         var updateremoveYes = function(data){
