@@ -276,9 +276,9 @@ firebase.initializeApp(firebaseConfig);
                 varto_name = 'ckonkol@aqua-aerobic.com';   
             }
             var templateParams = {
-		"from_name" : fldfirstname.trim + ' ' + fldlastname.trim,
-                "to_name" : fldmessage.trim,
-                "to_email" : fldlogin.trim + '@aqua-aerobic.com',
+		"from_name" : fldfirstname + ' ' + fldlastname,
+                "to_name" : fldmessage,
+                "to_email" : fldlogin + '@aqua-aerobic.com',
                 "cc_email" : cc_email
             };
             emailjs.send('service_aqua', 'template_checkedin', templateParams)
@@ -287,9 +287,9 @@ firebase.initializeApp(firebaseConfig);
              }, function(error) {
                  console.log('FAILED...', error);
              });
-		console.log("from_name" + fldfirstname.trim + ' ' + fldlastname.trim);
-		console.log("to_name" + fldmessage.trim);
-		console.log("to_email" + fldlogin.trim + '@aqua-aerobic.com');
+		console.log("from_name" + fldfirstname + ' ' + fldlastname);
+		console.log("to_name" + fldmessage);
+		console.log("to_email" + fldlogin + '@aqua-aerobic.com');
 		console.log("cc_email" + cc_email);
 	       //"from_name" : varfrom_name,
                // "to_name" : varto_name,
@@ -303,9 +303,9 @@ firebase.initializeApp(firebaseConfig);
             var reset = "https://aquavisitorsystem.github.io/?resetid=" + fldkey + "&Remove=Return";
             var changedate = "https://aquavisitorsystem.github.io/?id=" + fldkey;
             var templateParams = {
-		"from_name" : fldfirstname.trim + ' ' + fldlastname.trim,
-                "to_name" : fldmessage.trim,
-                "to_email" : fldlogin.trim + '@aqua-aerobic.com',
+		"from_name" : fldfirstname + ' ' + fldlastname,
+                "to_name" : fldmessage,
+                "to_email" : fldlogin + '@aqua-aerobic.com',
                 "cc_email" : cc_email,
                 "reset" : reset
             };
