@@ -291,9 +291,6 @@ firebase.initializeApp(firebaseConfig);
 		console.log("to_name" + fldmessage);
 		console.log("to_email" + fldlogin + '@aqua-aerobic.com');
 		console.log("cc_email" + cc_email);
-	       //"from_name" : varfrom_name,
-               // "to_name" : varto_name,
-               // "to_email" : varto_email,
         }
    
         var sendcheckedout = function(){
@@ -315,9 +312,6 @@ firebase.initializeApp(firebaseConfig);
              }, function(error) {
                  console.log('FAILED...', error);
              });
-		//"from_name" : varfrom_name,
-               // "to_name" : varto_name,
-                //"to_email" : varto_email,
         }
       
         var updateremoveYes = function(data){
