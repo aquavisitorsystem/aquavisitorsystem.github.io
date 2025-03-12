@@ -287,10 +287,6 @@ firebase.initializeApp(firebaseConfig);
              }, function(error) {
                  console.log('FAILED...', error);
              });
-		console.log("from_name" + fldfirstname + ' ' + fldlastname);
-		console.log("to_name" + fldmessage);
-		console.log("to_email" + fldlogin + '@aqua-aerobic.com');
-		console.log("cc_email" + cc_email);
         }
    
         var sendcheckedout = function(){
