@@ -873,7 +873,10 @@ document.getElementById("submit_msg").disabled = true;
         document.write("</center>");
         document.write('</body>');
         console.log("checkin successful");
-        sendcheckedin();
+        sleep(500).then(() => {
+            sendcheckedin();
+             });
+      //  sendcheckedin();
         log_create();
     }else if ((key_checkin !=null && key_checkin != '') && (key_checkout === null || key_checkout === '') && (todaysdate === true)){
         console.log("checkedin ID: Yes");
@@ -890,7 +893,10 @@ document.getElementById("submit_msg").disabled = true;
         document.write("</center>");
         document.write('</body>');
         console.log("checkout successful");
-        sendcheckedout();
+        sleep(500).then(() => {
+            sendcheckedout();
+             });
+       //sendcheckedout();
         log_create();
     }else if ((key_checkin !=null && key_checkin != '') && (key_checkout !=null && key_checkout != '') && (todaysdate === true)){
         //qr code used already old code removed to have check-in again if same day
@@ -931,7 +937,10 @@ document.getElementById("submit_msg").disabled = true;
         myTime = new Date(d).toLocaleString();
         fldcheckin = myTime;
         flddailycheckin = myTime; 
-        sendcheckedin();	
+        sleep(500).then(() => {
+            sendcheckedin();
+             });
+        //sendcheckedin();	
         log_create();	
         var data = {
             "errormsg": "Reset and Checkedin again at:" + myTime + " for: " + varFName + " " + varLName 
