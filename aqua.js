@@ -4974,6 +4974,7 @@ document.getElementsByTagName("body")[0].style.display = "none";
                 clear();
                 spinnow(3000);
                 setTimeout("window.location.reload();", 3000);  
+                return;
             }else{
                 start = new Date();
                 start.setHours(0,0,0,0);
