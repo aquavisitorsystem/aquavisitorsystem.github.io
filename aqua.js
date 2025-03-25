@@ -4375,8 +4375,13 @@ document.head.innerHTML = header;
     var db = firebase.firestore();
         //var get_login=prompt("Enter Guest Last Name To Search","Enter Guest Last Name");
     var get_login=prompt("Search Guest Last Name\r\n1) Enter Full or Start of Guest Last Name\r\n    Example: Smith or Sm\r\n2) Click [Ok] or [Enter] key", "Enter Guest Last Name Here");
-    if (get_login  === null || get_login === "Enter Guest Last Name") {
+    if (get_login === "Enter Guest Last Name Here") {
         alert("Please Try Again! Enter Guest Last Name.");
+        loadlogname();
+    }else if (get_login  === null){
+        clear();
+        spinnow(3000);
+        setTimeout("window.location.reload();", 3000);
     }else{
         get_login  = get_login.toString();
         get_login = get_login.trim().toUpperCase();
@@ -4448,9 +4453,11 @@ document.head.innerHTML = header;
     .catch((error) => {
         console.log("Error getting documents: ", error);
 });
+spinnow(3000);
+setTimeout("sortByDate2(7)", 3000);
 }
-    spinnow(3000);
-    setTimeout("sortByDate2(7)", 3000);
+    // spinnow(3000);
+    // setTimeout("sortByDate2(7)", 3000);
 }
 
     var loadlogcompanylink =  function(data){
@@ -4552,8 +4559,13 @@ document.head.innerHTML = header;
         var db = firebase.firestore();
         //var get_login=prompt("Enter Guest Company Name To Search","Enter Guest Company Name");
         var get_login=prompt("Search Guest Company Name\r\n1) Enter Full or Start of Guest Company Name\r\n    Example: ABC Company or ABC\r\n2) Click [Ok] or [Enter] key", "Enter Guest Company Name Here");
-        if (get_login  === null || get_login === "Enter Guest Company Name") {
+        if (get_login === "Enter Guest Company Name Here") {
             alert("Please Try Again! Enter Guest Company Name.");
+            loadlogcompany();
+        }else if (get_login  === null){
+            clear();
+            spinnow(3000);
+            setTimeout("window.location.reload();", 3000);    
         }else{
             get_login  = get_login.toString();
             get_login = get_login.trim().toUpperCase();
@@ -4628,9 +4640,11 @@ document.head.innerHTML = header;
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
-    }
     spinnow(3000);
     setTimeout("sortByDate2(7)", 3000);
+    }
+    // spinnow(3000);
+    // setTimeout("sortByDate2(7)", 3000);
 }
 
     var loadloguseridlink =  function(data){
@@ -4726,8 +4740,13 @@ var loadloguserid =  function(){
     var db = firebase.firestore();
     var Visitors = [];
     var get_login=prompt("Enter Aqua UserID To Search","Enter Aqua UserID");
-    if (get_login  === null || get_login === "Enter Aqua UserID") {
+    if (get_login === "Enter Aqua UserID") {
         alert("Please Try Again! Enter Guest Last Name.");
+        loadloguserid();
+    }else if (get_login  === null){
+        clear();
+        spinnow(3000);
+        setTimeout("window.location.reload();", 3000);
     }else{
         get_login  = get_login.toString();
         get_login = get_login.trim().toLowerCase();
@@ -4800,9 +4819,11 @@ var loadloguserid =  function(){
     .catch((error) => {
         console.log("Error getting documents: ", error);
 });
+spinnow(3000);
+setTimeout("sortByDate2(7)",3000);
 }
-    spinnow(3000);
-    setTimeout("sortByDate2(7)",3000);
+    // spinnow(3000);
+    // setTimeout("sortByDate2(7)",3000);
 }
 
 function countUnique(iterable) {
@@ -4939,7 +4960,7 @@ document.getElementsByTagName("body")[0].style.display = "none";
             var strStart = new Date();
             var strEnd = new Date();
             var name=prompt("Please choose one of the following\r\n1) Enter date to search (Example: 05/01/2024) > Click [Ok]\r\n2) Click [Ok] for today's date","Enter Date");
-            if (name!="Enter Date"){
+            if (name!="Enter Date" && name!=null){
                 start = new Date(name);
                 choosedate   = new Date(name).toDateString();
                 start.setHours(0,0,0,0);
@@ -4949,6 +4970,10 @@ document.getElementsByTagName("body")[0].style.display = "none";
                 strEnd =  end.toISOString();
                 start = start.toISOString();
                 end = end.toISOString();
+            }else if (name  === null){
+                clear();
+                spinnow(3000);
+                setTimeout("window.location.reload();", 3000);  
             }else{
                 start = new Date();
                 start.setHours(0,0,0,0);
@@ -5032,14 +5057,16 @@ document.getElementsByTagName("body")[0].style.display = "none";
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
+    spinnow(3000);
+    setTimeout("sortByDate2(7)", 3000);
     }catch(err) {
         var nodata = "<center><br>Incorrect Date Format. Please try again.<br><br> <a href='https://aquavisitorsystem.github.io/'>Go Home</a><br></center>";
         document.write(nodata);
         // loadlogdate();
        
     }
-    spinnow(3000);
-    setTimeout("sortByDate2(7)", 3000);
+    // spinnow(3000);
+    // setTimeout("sortByDate2(7)", 3000);
     }
 		
     var loadlogall_OLD =  function(){
@@ -7460,7 +7487,7 @@ var loadweekschedule =  function(){
 var end = new Date();
  var d = new Date();
 var name=prompt("Please choose one of the following\r\n1) Enter end search date > Click [Ok]\r\n2) Click [Ok] for today's date","Enter Date");
-    if (name!="Enter Date"){
+    if (name!="Enter Date" && name!=null){
 	  d = new Date(name);
           var enddate = new Date(name);
 	  start = new Date(name);
@@ -7468,12 +7495,17 @@ var name=prompt("Please choose one of the following\r\n1) Enter end search date 
          start.setHours(0,0,0,0);
         end = new Date(enddate.getTime());
          end.setHours(23,59,59,999);
+        }else if (name  === null){
+            clear();
+            spinnow(3000);
+            setTimeout("window.location.reload();", 3000);
 }else{
           start.setDate(date.getDate() - 7);
          start.setHours(0,0,0,0);
         end = new Date(date.getTime());
          end.setHours(23,59,59,999);
 }	
+console.log("Name is:" & name)
     //end new 1/16/2023
          start = new Date(start.getTime() - (start.getTimezoneOffset() * 60000)).toISOString();
 	  
@@ -7563,8 +7595,17 @@ spinnow(3000);
 setTimeout("sortByDate2(7)", 3000);
 }
     catch(err) {
-    var nodata = "<center><br>Incorrect Date Format. Please try again.<br><br> <a href='https://aquavisitorsystem.github.io/'>Go Home</a><br></center>";
-    document.write(nodata);
+        console.log("Name is:" + name)
+        if (name === null){
+            //clear();
+            spinnow(3000);
+            setTimeout("window.location.reload();", 3000);
+        
+        }else{
+              var nodata = "<center><br>Incorrect Date Format. Please try again.<br><br> <a href='https://aquavisitorsystem.github.io/'>Go Home</a><br></center>";
+    document.write(nodata);  
+        }
+
 }
 }
 
