@@ -49,6 +49,108 @@ firebase.initializeApp(firebaseConfig);
     var arrayuserid=[];
     var arrayfullname=[];
 
+    var removeolderrorlogs = function(){
+        var TwoYrsFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 2))
+        const twoyrsago = +new Date(TwoYrsFromNow);
+        var db = firebase.firestore();
+
+        if (confirm('Are you sure you want to remove records older then: ' + TwoYrsFromNow)) {
+            // Save it!
+            var ErrorRemove_query = db.collection('error').where('timestamp','<=',twoyrsago);
+            ErrorRemove_query.get().then(function(querySnapshot) {
+              querySnapshot.forEach(function(doc) {
+                doc.ref.delete();
+              });
+            }) .then(function(doc) {
+                console.log("doc updated");
+                alert("removeolderrorlogs!\nError logs older than 2 years have been removed!");
+                sleep(1000).then(() => {
+                    window.location.replace("https://aquavisitorsystem.github.io");
+                      });
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+                alert("Error removeolderrorlogs\n" + error);
+                sleep(1000).then(() => {
+                    window.location.replace("https://aquavisitorsystem.github.io");
+                      });
+            });
+          } else {
+            // Do nothing!
+            alert("removeolderrorlogs\n" + "Cancelled");
+            sleep(1000).then(() => {
+                window.location.replace("https://aquavisitorsystem.github.io");
+                  });
+          }
+    }
+
+    var removeoldmessages = function(){
+        var TwoYrsFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 2))
+        const twoyrsago = +new Date(TwoYrsFromNow);
+        var db = firebase.firestore();
+
+        if (confirm('Are you sure you want to remove records older then: ' + TwoYrsFromNow)) {
+            // Save it!
+            var ErrorRemove_query = db.collection('messages').where('timestamp','<=',twoyrsago);
+            ErrorRemove_query.get().then(function(querySnapshot) {
+              querySnapshot.forEach(function(doc) {
+                doc.ref.delete();
+              });
+            }) .then(function(doc) {
+                console.log("docs removed from: " + twoyrsago);
+                alert("removeoldmessages!\nmessages older than 2 years have been removed!");
+                sleep(1000).then(() => {
+                    window.location.replace("https://aquavisitorsystem.github.io");
+                      });
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+                alert("Error removeoldmessages\n" + error);
+                sleep(1000).then(() => {
+                    window.location.replace("https://aquavisitorsystem.github.io");
+                      });
+            });
+          } else {
+            // Do nothing!
+            alert("removeoldmessages\n" + "Cancelled");
+            sleep(1000).then(() => {
+                window.location.replace("https://aquavisitorsystem.github.io");
+                  });
+          }
+    }
+
+    var removeoldlogs = function(){
+        var TwoYrsFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 2))
+        const twoyrsago = +new Date(TwoYrsFromNow);
+        var db = firebase.firestore();
+
+        if (confirm('Are you sure you want to remove records older then: ' + TwoYrsFromNow)) {
+            // Save it!
+            var ErrorRemove_query = db.collection('log').where('timestamp','<=',twoyrsago);
+            ErrorRemove_query.get().then(function(querySnapshot) {
+              querySnapshot.forEach(function(doc) {
+                doc.ref.delete();
+              });
+            }) .then(function(doc) {
+                console.log("docs removed from: " + twoyrsago);
+                alert("removeoldlogs!\logs older than 2 years have been removed!");
+                sleep(1000).then(() => {
+                    window.location.replace("https://aquavisitorsystem.github.io");
+                      });
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+                alert("Error removeoldlogs\n" + error);
+                sleep(1000).then(() => {
+                    window.location.replace("https://aquavisitorsystem.github.io");
+                      });
+            });
+          } else {
+            // Do nothing!
+            alert("removeoldlogs\n" + "Cancelled");
+            sleep(1000).then(() => {
+                window.location.replace("https://aquavisitorsystem.github.io");
+                  });
+          }
+    }
+
     function getDateXDaysAgo(numOfDays, date = new Date()) {
         var daysAgo = new Date(date.getTime());
 
@@ -8501,6 +8603,12 @@ var getloginname = function(){
         loaddbactivereport();
     }else if (username.toLowerCase()  === 'userid') {
         loaduseridreport();
+    }else if (username.toLowerCase()  === 'removeerror') {
+        removeolderrorlogs();
+    }else if (username.toLowerCase()  === 'removemessages') {
+        removeoldmessages();
+    }else if (username.toLowerCase()  === 'removelogs') {
+        removeoldlogs();
     }else if (username.toLowerCase()  === 'activitylog') {
         //window.open('https://aquavisitorsystem.github.io/aquavisitoractivity.github.io/firestore/', '_blank').focus();
         spinnow(3000);
