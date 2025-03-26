@@ -40,8 +40,8 @@ firebase.initializeApp(firebaseConfig);
     var varfrom_name = "";
     var varto_email = "";
     var varto_name = "";
-    var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com;SArbisi@aqua-aerobic.com";
-    //var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com";
+   // var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com;SArbisi@aqua-aerobic.com";
+    var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com";
     var key_checkin = "";
     var key_checkout = "";
     var gbit = "";
@@ -271,14 +271,18 @@ firebase.initializeApp(firebaseConfig);
             }
         }
 
-        var sendcheckedin = function(){
-            if (varto_email  === 'walkin@aqua-aerobic.com'){
-                varto_email  = 'ckonkol@aqua-aerobic.com';   
+        var sendcheckedin = function(data){
+            var key = data["gkey"];
+            var from_name = data["gfrom_name"]; 
+            var to_email = data["gto_email"];
+            var to_name = data["gto_name"];
+            if (to_email  === 'walkin@aqua-aerobic.com'){
+                to_email  = 'ckonkol@aqua-aerobic.com';   
             }
             var templateParams = {
-		         "from_name" : varfrom_name,
-                "to_name" : varto_name,
-                "to_email" :  varto_email,
+		         "from_name" : from_name,
+                "to_name" : to_name,
+                "to_email" :  to_email,
                 "cc_email" : cc_email
             };
             emailjs.send('service_aqua', 'template_checkedin', templateParams)
@@ -289,16 +293,19 @@ firebase.initializeApp(firebaseConfig);
              });
         }
    
-        var sendcheckedout = function(){
-            if (varto_email === 'walkin@aqua-aerobic.com'){
-                varto_email = 'ckonkol@aqua-aerobic.com';   
+        var sendcheckedout = function(data){
+            var key = data["gkey"];
+            var from_name = data["gfrom_name"]; 
+            var to_email = data["gto_email"];
+            var to_name = data["gto_name"];
+            if (to_email === 'walkin@aqua-aerobic.com'){
+                to_email = 'ckonkol@aqua-aerobic.com';   
             }
-            var reset = "https://aquavisitorsystem.github.io/?resetid=" + fldkey + "&Remove=Return";
-            var changedate = "https://aquavisitorsystem.github.io/?id=" + fldkey;
+            var reset = "https://aquavisitorsystem.github.io/?resetid=" + key + "&Remove=Return";
             var templateParams = {
-                "from_name" : varfrom_name,
-                "to_name" : varto_name,
-                "to_email" :  varto_email,
+                "from_name" : from_name,
+                "to_name" : to_name,
+                "to_email" :  to_email,
                 "cc_email" : cc_email,
                 "reset" : reset
             };
@@ -720,6 +727,12 @@ document.getElementById("submit_msg").disabled = true;
         varfrom_name = varFName + ' ' + varLName;
         varto_email = varAqua + '@aqua-aerobic.com';
         varto_name = doc.data().message;
+        var sendemaildata = {
+            "gkey": get_id,  
+            "gfrom_name": varFName + ' ' + varLName,
+            "gto_email": varAqua + '@aqua-aerobic.com',
+            "gto_name": doc.data().message
+        }
         //Get log variables
         fldlogin = doc.data().login;
         fldfirstname = doc.data().firstname;
@@ -874,7 +887,7 @@ document.getElementById("submit_msg").disabled = true;
         document.write('</body>');
         console.log("checkin successful");
         sleep(500).then(() => {
-            sendcheckedin();
+            sendcheckedin(sendemaildata);
              });
       //  sendcheckedin();
         log_create();
