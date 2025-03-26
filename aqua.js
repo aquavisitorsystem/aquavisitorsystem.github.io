@@ -696,6 +696,7 @@ document.getElementById("submit_msg").disabled = true;
        
     var get_checkin_data = function(data){
         var d = new Date();
+        var sendemaildata={};
         var todaysdate = false;
         var choosedate  = new Date();
         choosedate = d.toDateString();
@@ -727,8 +728,8 @@ document.getElementById("submit_msg").disabled = true;
         varfrom_name = varFName + ' ' + varLName;
         varto_email = varAqua + '@aqua-aerobic.com';
         varto_name = doc.data().message;
-        var sendemaildata = {
-            "gkey": get_id,  
+        sendemaildata = {
+            "gkey": doc.data().key,  
             "gfrom_name": varFName + ' ' + varLName,
             "gto_email": varAqua + '@aqua-aerobic.com',
             "gto_name": doc.data().message
@@ -907,7 +908,7 @@ document.getElementById("submit_msg").disabled = true;
         document.write('</body>');
         console.log("checkout successful");
         sleep(500).then(() => {
-            sendcheckedout();
+            sendcheckedout(sendemaildata);
              });
        //sendcheckedout();
         log_create();
@@ -951,7 +952,7 @@ document.getElementById("submit_msg").disabled = true;
         fldcheckin = myTime;
         flddailycheckin = myTime; 
         sleep(500).then(() => {
-            sendcheckedin();
+            sendcheckedin(sendemaildata);
              });
         //sendcheckedin();	
         log_create();	
