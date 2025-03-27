@@ -2403,12 +2403,26 @@ document.getElementById('back').style.display = 'block';
             //break;
         }
     }
-
     //document.write('<tr><td>' + doc.data().login + '</td><td>' + doc.data().firstname + '</td><td>' + doc.data().lastname + '</td><td>' + doc.data().company + '</td><td>' + dates + '</td><td>' + datesort + '</td><td>' + doc.data().email + '</td><td>' + doc.data().message + '</td><td><a href="https://aquavisitorsystem.github.io/?id=' + doc.data().key + '">Click here</a></td></tr>');
+    var start = new Date();
+    start.setHours(0,0,0,0);
+    start = new Date(start.getTime() - (start.getTimezoneOffset() * 60000)).toISOString();
+    var datechosen = new Date(datesort).toLocaleDateString("fr-CA", options2);
+    var starts = new Date(start).toLocaleDateString("fr-CA", options2);
+    console.log("starts :" + starts);
+    console.log("datechosen :" + datechosen);
+    if (datechosen >= starts){
     var namelinks = "<a href='https://aquavisitorsystem.github.io/?lname=" + doc.data().lastname + "' target='_blank'>" + doc.data().lastname + "</a>";
     var companylinks = "<a href='https://aquavisitorsystem.github.io/?company=" + doc.data().company + "' target='_blank'>" + doc.data().company + "</a>";
     var glinks = "<a href='https://aquavisitorsystem.github.io/?userid=" + doc.data().login + "&report=active' target='_blank'>" + doc.data().login + "</a>";
-    document.write('<tr><td>' + glinks  + '</td><td>' + doc.data().firstname + '</td><td>' + namelinks + '</td><td>' + companylinks + '</td><td>' + dates + '</td><td>' + datesort + '</td><td>' + doc.data().email + '</td><td>' + doc.data().message + '</td><td><a href="https://aquavisitorsystem.github.io/?id=' + doc.data().key + '">Click here</a></td></tr>');
+    document.write('<tr title="ACTIVE SCHEDULE(S)"><td>' + glinks  + '</td><td>' + doc.data().firstname + '</td><td>' + namelinks + '</td><td>' + companylinks + '</td><td>' + dates + '</td><td>' + datesort + '</td><td>' + doc.data().email + '</td><td>' + doc.data().message + '</td><td><a href="https://aquavisitorsystem.github.io/?id=' + doc.data().key + '">Click here</a></td></tr>');
+    }else{
+        var namelinks = "<a href='https://aquavisitorsystem.github.io/?lname=" + doc.data().lastname + "' target='_blank'>" + doc.data().lastname + "</a>";
+        var companylinks = "<a href='https://aquavisitorsystem.github.io/?company=" + doc.data().company + "' target='_blank'>" + doc.data().company + "</a>";
+        var glinks = "<a href='https://aquavisitorsystem.github.io/?userid=" + doc.data().login + "&report=active' target='_blank'>" + doc.data().login + "</a>";
+        document.write('<tr style="opacity:0.2;background-color: lightgray;" title="INACTIVE SCHEDULE(S)"><td>' + glinks  + '</td><td>' + doc.data().firstname + '</td><td>' + namelinks + '</td><td>' + companylinks + '</td><td>' + dates + '</td><td>' + datesort + '</td><td>' + doc.data().email + '</td><td>' + doc.data().message + '</td><td><a href="https://aquavisitorsystem.github.io/?id=' + doc.data().key + '">Click here</a></td></tr>');
+    }
+
      });
     var count = 0;
     try {
