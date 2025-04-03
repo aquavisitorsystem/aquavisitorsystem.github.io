@@ -8458,12 +8458,7 @@ dates = new Date(doc.data().date12).toLocaleDateString("en", options)
   if (doc.data().mon === true) {
      var dt = new Date(dt1);
         var ndt = dt.getDay();
-        date13 = new Date(date13).toLocaleDateString("fr-CA", options2);
-        dt1 = new Date().toLocaleDateString("fr-CA", options2);
-        date14 = new Date(date14).toLocaleDateString("fr-CA", options2);
-        const d = new Date();
-        let day = d.getDay();
-       if (dt1 >= date13 && dt1 <= date14 && day === 1){
+       if (dt1 >= date13 && dt1 <= date14 && ndt === 1){
      
            console.log("mon ndt: " + ndt);
           
@@ -8479,12 +8474,7 @@ dates = new Date(doc.data().date12).toLocaleDateString("en", options)
     if (doc.data().tue === true)  {
      var dt = new Date(dt1);
         var ndt = dt.getDay();
-        date13 = new Date(date13).toLocaleDateString("fr-CA", options2);
-        dt1 = new Date().toLocaleDateString("fr-CA", options2);
-        date14 = new Date(date14).toLocaleDateString("fr-CA", options2);
-        const d = new Date();
-        let day = d.getDay();
-        if (dt1 >= date13 && dt1 <= date14 && day === 2){
+        if (dt1 >= date13 && dt1 <= date14 && ndt === 2){
     
            console.log("tue ndt: " + ndt);
           
@@ -8500,12 +8490,7 @@ dates = new Date(doc.data().date12).toLocaleDateString("en", options)
     if (doc.data().wed === true) {
       var dt = new Date(dt1);
         var ndt = dt.getDay();
-        date13 = new Date(date13).toLocaleDateString("fr-CA", options2);
-        dt1 = new Date().toLocaleDateString("fr-CA", options2);
-        date14 = new Date(date14).toLocaleDateString("fr-CA", options2);
-        const d = new Date();
-        let day = d.getDay();
-     if (dt1 >= date13 && dt1 <= date14 && day === 3){
+     if (dt1 >= date13 && dt1 <= date14 && ndt === 3){
       
            console.log("wed ndt: " + ndt);
      
@@ -8520,12 +8505,7 @@ dates = new Date(doc.data().date12).toLocaleDateString("en", options)
     if (doc.data().thu === true) {
      var dt = new Date(dt1);
         var ndt = dt.getDay();
-        date13 = new Date(date13).toLocaleDateString("fr-CA", options2);
-        dt1 = new Date().toLocaleDateString("fr-CA", options2);
-        date14 = new Date(date14).toLocaleDateString("fr-CA", options2);
-        const d = new Date();
-        let day = d.getDay();
-     if (dt1 >= date13 && dt1 <= date14 && day === 4){
+     if (dt1 >= date13 && dt1 <= date14 && ndt === 4){
            console.log("thu ndt: " + ndt);
     
        var h  =  tConvert (doc.data().rectime);
@@ -8539,12 +8519,7 @@ dates = new Date(doc.data().date12).toLocaleDateString("en", options)
     if (doc.data().fri === true) {
        var dt = new Date(dt1);
         var ndt = dt.getDay();
-        date13 = new Date(date13).toLocaleDateString("fr-CA", options2);
-        dt1 = new Date().toLocaleDateString("fr-CA", options2);
-        date14 = new Date(date14).toLocaleDateString("fr-CA", options2);
-        const d = new Date();
-        let day = d.getDay();
-     if (dt1 >= date13 && dt1 <= date14 && day === 5){
+     if (dt1 >= date13 && dt1 <= date14 && ndt === 5){
                 console.log("fri ndt: " + ndt);
     
        var h  =  tConvert (doc.data().rectime);
