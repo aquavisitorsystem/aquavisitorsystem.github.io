@@ -6976,9 +6976,7 @@ dates = new Date(doc.data().date12).toLocaleDateString("en", options)
 }
  var dt1 = new Date(todays).toLocaleDateString("en", options2);
 
-
-
-  if (doc.data().mon === true) {
+if (doc.data().mon === true) {
         var dt = new Date(dt1);
         var ndt = dt.getDay();
         date13 = new Date(date13).toLocaleDateString("fr-CA", options2);
@@ -6989,8 +6987,6 @@ dates = new Date(doc.data().date12).toLocaleDateString("en", options)
        if (dt1 >= date13 && dt1 <= date14 && day === 1){
             var ndt = dt.getDay();
            console.log("mon ndt: " + ndt);
-          
-   
        var h  =  tConvert (doc.data().rectime);
        dates = name + "," + h; 
        dates = new Date(dates).toLocaleDateString("en", options);
