@@ -6816,22 +6816,22 @@ db.collection("messages").where("thu", "==",true).where("remove", "==","No").get
     console.log("new Date(doc.data().date14) >= todaysdate:" + new Date(doc.data().date14) >= todaysdate);
     console.log("new Date(doc.data().date14):" + new Date(doc.data().date14));
     console.log("todaysdate:" + todaysdate);
-    var date14gg = new Date(doc.data().date14);
-    const date14ggg = date14gg.toLocaleDateString('en-CA', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-      });
-    var datetodayg = new Date();
-      const datetodayggg = datetodayg.toLocaleDateString('en-CA', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-        });
-        console.log("date14ggg:" + date14ggg);
-        console.log("datetodayg:" + datetodayggg);
-        console.log("date14ggg >= datetodayg:" + date14ggg >= datetodayggg);
-if (typeof doc.data().date14 !== 'undefined' && doc.data().date14 !=="" && date14ggg >= datetodayggg) {
+    // var date14gg = new Date(doc.data().date14);
+    // const date14ggg = date14gg.toLocaleDateString('en-CA', {
+    //     year: 'numeric',
+    //     month: '2-digit',
+    //     day: '2-digit'
+    //   });
+    // var datetodayg = new Date();
+    //   const datetodayggg = datetodayg.toLocaleDateString('en-CA', {
+    //       year: 'numeric',
+    //       month: '2-digit',
+    //       day: '2-digit'
+    //     });
+    //     console.log("date14ggg:" + date14ggg);
+    //     console.log("datetodayg:" + datetodayggg);
+    //     console.log("date14ggg >= datetodayg:" + date14ggg >= datetodayggg);
+if (typeof doc.data().date14 !== 'undefined' && doc.data().date14 !=="" && new Date(doc.data().date14) >= todaysdate) {
     cnt1 = cnt1 + 1;
     console.log("thu cnt1:" + cnt1);
     RecordIDs.push( doc.id);
