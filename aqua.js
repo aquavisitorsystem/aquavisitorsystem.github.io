@@ -6519,6 +6519,7 @@ cnt1 = cnt1 - 1
     }
     }
 
+    
     if (doc.data().fri === true) {
       var dt = new Date(dt1);
         var ndt = dt.getDay();
