@@ -8353,7 +8353,7 @@ var chunk;
 let todays = new Date().toLocaleDateString();
 var header = "<head><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><style>table, td, th {  border: 1px solid #cbbbbb;  text-align: left;}table {  border-collapse: collapse;  width: 100%;}th, td {  padding: 10px;} tr:nth-child(even) {  background-color: #dddddd;}</style></head>";
 //var title = "<div id='reptitle'><center><h1 style='color: #005098;margin-block-end: 0;'>Active Visitor(s) for: " + todays + "</h1></center></div>";      
-var title = "<div id='reptitle'><center><h1 style='color: #005098;margin-block-end: 0;'>Visitor(s) for: " + todays + "</h1></center></div>";      
+var title = "<div id='reptitle'><center><h1 style='color: #005098;margin-block-end: 0;'>Our Guests for: " + todays + "</h1></center></div>";      
 document.write(title);
 var links = "'https://aquameeting.github.io/?ipad=Yes'";
 var buttons =  '<button onclick="window.location.href=' + links + ';" style="background-color: yellow;font-weight: bold;border-color: black;font-size: xx-small;">Tap Here</button>';
