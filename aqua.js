@@ -41,8 +41,8 @@ firebase.initializeApp(firebaseConfig);
     var varfrom_name = "";
     var varto_email = "";
     var varto_name = "";
-    var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com;SArbisi@aqua-aerobic.com";
-    //var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com";
+    //var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com;SArbisi@aqua-aerobic.com";
+    var cc_email = "ckonkol@gmail.com;ckonkol@aqua-aerobic.com";
     var key_checkin = "";
     var key_checkout = "";
     var gbit = "";
@@ -397,7 +397,7 @@ firebase.initializeApp(firebaseConfig);
         }
    
         var sendcheckedout = function(data){
-            // var key = data["gkey"];
+            var key = data["gkey"];
             var from_name = data["gfrom_name"]; 
             var to_email = data["gto_email"];
             var to_name = data["gto_name"];
