@@ -375,49 +375,49 @@ firebase.initializeApp(firebaseConfig);
         }
 
         var sendcheckedin = function(data){
-            var key = data["gkey"];
-            var from_name = data["gfrom_name"]; 
-            var to_email = data["gto_email"];
-            var to_name = data["gto_name"];
-            if (to_email  === 'walkin@aqua-aerobic.com'){
-                to_email  = 'ckonkol@aqua-aerobic.com';   
-            }
-            var templateParams = {
-		         "from_name" : from_name,
-                "to_name" : to_name,
-                "to_email" :  to_email,
-                "cc_email" : cc_email
-            };
-            emailjs.send('service_aqua', 'template_checkedin', templateParams)
-             .then(function(response) {
-                 console.log('SUCCESS!', response.status, response.text);
-             }, function(error) {
-                 console.log('FAILED...', error);
-             });
+            // var key = data["gkey"];
+            // var from_name = data["gfrom_name"]; 
+            // var to_email = data["gto_email"];
+            // var to_name = data["gto_name"];
+            // if (to_email  === 'walkin@aqua-aerobic.com'){
+            //     to_email  = 'ckonkol@aqua-aerobic.com';   
+            // }
+            // var templateParams = {
+		    //      "from_name" : from_name,
+            //     "to_name" : to_name,
+            //     "to_email" :  to_email,
+            //     "cc_email" : cc_email
+            // };
+            // emailjs.send('service_aqua', 'template_checkedin', templateParams)
+            //  .then(function(response) {
+            //      console.log('SUCCESS!', response.status, response.text);
+            //  }, function(error) {
+            //      console.log('FAILED...', error);
+            //  });
         }
    
         var sendcheckedout = function(data){
-            var key = data["gkey"];
-            var from_name = data["gfrom_name"]; 
-            var to_email = data["gto_email"];
-            var to_name = data["gto_name"];
-            if (to_email === 'walkin@aqua-aerobic.com'){
-                to_email = 'ckonkol@aqua-aerobic.com';   
-            }
-            var reset = "https://aquavisitorsystem.github.io/?resetid=" + key + "&Remove=Return";
-            var templateParams = {
-                "from_name" : from_name,
-                "to_name" : to_name,
-                "to_email" :  to_email,
-                "cc_email" : cc_email,
-                "reset" : reset
-            };
-            emailjs.send('service_aqua', 'template_checkedout', templateParams)
-             .then(function(response) {
-                 console.log('SUCCESS!', response.status, response.text);
-             }, function(error) {
-                 console.log('FAILED...', error);
-             });
+            // var key = data["gkey"];
+            // var from_name = data["gfrom_name"]; 
+            // var to_email = data["gto_email"];
+            // var to_name = data["gto_name"];
+            // if (to_email === 'walkin@aqua-aerobic.com'){
+            //     to_email = 'ckonkol@aqua-aerobic.com';   
+            // }
+            // var reset = "https://aquavisitorsystem.github.io/?resetid=" + key + "&Remove=Return";
+            // var templateParams = {
+            //     "from_name" : from_name,
+            //     "to_name" : to_name,
+            //     "to_email" :  to_email,
+            //     "cc_email" : cc_email,
+            //     "reset" : reset
+            // };
+            // emailjs.send('service_aqua', 'template_checkedout', templateParams)
+            //  .then(function(response) {
+            //      console.log('SUCCESS!', response.status, response.text);
+            //  }, function(error) {
+            //      console.log('FAILED...', error);
+            //  });
         }
       
         var updateremoveYes = function(data){
@@ -919,28 +919,38 @@ document.getElementById("submit_msg").disabled = true;
             var dt1 = new Date(choosedate).toLocaleDateString("en", options2);
             var dt = new Date(dt1);
             var ndt = dt.getDay();
+            console.log("ndt" + ndt);
+            console.log("date13" + date13);
+            console.log("date14" + date14);
+            console.log("datedt1 >= date13: " + dt1 >= date13);
+            console.log("dt1 <= date14: " + dt1 <= date14);
+            var ggdate13 = new Date(date13).toLocaleDateString("fr-CA", options2);
+            var ggdt1 = new Date().toLocaleDateString("fr-CA", options2);
+            var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
+            var dgg = new Date();
+            let daygg = dgg.getDay();
             if (doc.data().mon === true) {
-                if (dt1 >= date13 && dt1 <= date14 && ndt === 1){
+                if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 1){
                     todaysdate = true;
                 }
             }
             if (doc.data().tue === true) {
-                if (dt1 >= date13 && dt1 <= date14 && ndt === 2){
+                if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 2){
                     todaysdate = true;
                 }
             }
             if (doc.data().wed === true) {
-                if (dt1 >= date13 && dt1 <= date14 && ndt === 3){
+                if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 3){
                     todaysdate = true;
                 }
             }
             if (doc.data().thu === true) {
-                if (dt1 >= date13 && dt1 <= date14 && ndt === 4){
+                if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 4){
                     todaysdate = true;
                 }
             }
             if (doc.data().fri === true) {
-                if (dt1 >= date13 && dt1 <= date14 && ndt === 5){
+                if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 5){
                     todaysdate = true;
                 }
             }
