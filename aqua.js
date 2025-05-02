@@ -218,7 +218,7 @@ firebase.initializeApp(firebaseConfig);
                 }
 	   if (login === 'walkin'){
                      SaveDoc.set({
-                login: data["login"],
+                login: data["walkinid"],
                 firstname: data["fname"],
                 lastname: data["lname"],
                 company: data["cname"],
@@ -9406,7 +9406,8 @@ if ((checkin != null && checkin != '') &&  (keyid != null && keyid != '')) {
         document.getElementById('header').style.display = 'none';
         document.getElementById('logo').style.display = 'none';
         var data = {
-            "login": g_walkinid.trim().toUpperCase(),
+            "login": 'walkin',
+            "walkinid" : g_walkinid.trim().toUpperCase(),
             "key": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + gdate77,
             "fname": g_fname.trim().toUpperCase(),
             "lname": g_lname.trim().toUpperCase(),
