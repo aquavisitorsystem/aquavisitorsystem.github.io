@@ -9385,6 +9385,9 @@ console.log(g_logreport);
 
 var g_logvalue= urlParams.get('logvalue')
 console.log(g_logvalue);
+
+var g_walkinid= urlParams.get('walkinid')
+console.log(g_walkinid);
 	    
 //loaddbtoday
 	    
@@ -9403,7 +9406,7 @@ if ((checkin != null && checkin != '') &&  (keyid != null && keyid != '')) {
         document.getElementById('header').style.display = 'none';
         document.getElementById('logo').style.display = 'none';
         var data = {
-            "login": 'walkin',
+            "login": g_walkinid.trim().toUpperCase(),
             "key": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + gdate77,
             "fname": g_fname.trim().toUpperCase(),
             "lname": g_lname.trim().toUpperCase(),
