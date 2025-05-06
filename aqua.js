@@ -8412,7 +8412,7 @@ var links = "'https://aquameeting.github.io/?ipad=Yes'";
 var buttons =  '<button onclick="window.location.href=' + links + ';" style="background-color: yellow;font-weight: bold;border-color: black;font-size: xx-small;">Tap Here</button>';
 //var buttons =  '<a href=' + links + ';" style="font-size: small;">tap here</a>';
 //document.write("<center>**Find your schedule below and tap the <button style='background-color: yellow;font-weight: bold;border-color: black;font-size: small;'>HERE</button> button.</center> <p  style='font-size: small;'>**If schedule not found, " + buttons + "</p>"); 
-document.write("<center>**Find your schedule below and tap the <button style='background-color: yellow;font-weight: bold;border-color: black;font-size: small;'>HERE</button> button.</center> <p  style='font-size: small;'>**If schedule not found, please let receptionist know.</p>"); 
+document.write("<center style='color: gray;'>**find your schedule row below, tap <button style='background-color: yellow;font-weight: bold;border-color: black;font-size: small;'>HERE</button> button.</center> <p  style='font-size: small;color:gray'>**If schedule not found, please let receptionist know.</p>"); 
 console.log("Total cnt1:" + cnt1);
 if (cnt1 === 0){
     var nodata = "<center><br>No visitor data found<br></center>";
