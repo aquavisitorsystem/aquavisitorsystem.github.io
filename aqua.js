@@ -8398,7 +8398,6 @@ const optionsFullDate = {
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' };
-
 let todays = new Date().toLocaleDateString();
 //let todays = new Date().toLocaleDateString();
 var todayfulldate = new Date().toLocaleDateString("en-US", optionsFullDate);
