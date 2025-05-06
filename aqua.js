@@ -6459,7 +6459,7 @@ var title = "<div id='reptitle'><center><h1>Aqua-Aerobic Systems Visitor Schedul
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-       if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 1){
+       if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 1){
             var ndt = dt.getDay();
            console.log("mon ndt: " + ndt);
           
@@ -6479,7 +6479,7 @@ var dt = new Date(dt1);
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 2){
+        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 2){
         
            console.log("tue ndt: " + ndt);
           
@@ -6499,7 +6499,7 @@ cnt1 = cnt1 - 1
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg  === 3){
+        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 3){
 
        
            console.log("wed ndt: " + ndt);
@@ -6519,7 +6519,7 @@ var dt = new Date(dt1);
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg  === 4){
+        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 4){
         
            console.log("thu ndt: " + ndt);
    
@@ -6538,7 +6538,7 @@ cnt1 = cnt1 - 1
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg  === 5){
+        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 5){
         
            console.log("fri ndt: " + ndt);
     
