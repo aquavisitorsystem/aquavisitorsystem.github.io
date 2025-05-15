@@ -9526,7 +9526,7 @@ if (g_report === 'inactive') {
     console.log('string IS empty');
 }  
 
-if (g_report === 'active') {
+if (g_report === 'activereport') {
     clearloadreport();
     loaddbeverythingall();
 } else {
