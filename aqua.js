@@ -748,6 +748,12 @@ document.getElementById("submit_msg").disabled = true;
     var newdate = new Date().toISOString(); 
     var key = fldfirstname + fldlastname + newdate;
     var SaveDoc = db.collection("log").doc(key); 
+    try{
+     fldlogin  = fldlogin.toLowerCase();
+    }catch (eror){
+        fldlogin =  fldlogin;
+    }
+
     SaveDoc.set({
         key: key, 
         sourcekey: fldkey,
@@ -4905,7 +4911,8 @@ var loadloguserid =  function(){
         var printnow = "<center><input type='button' id='btnPrint' onclick='window.print();' value='Print' /></center><br>";
         var lines = "";
         let today = new Date().toISOString().slice(0, 10);
-        db.collection("log").where("login", "==",get_login).orderBy("checkin","desc")
+       // db.collection("log").where("login", "==",get_login).orderBy("checkin","desc")
+        db.collection("log").where("login", "in",[get_login.toLowerCase(),get_login.toUpperCase()]).orderBy("checkin","desc")
    .get()
    .then((querySnapshot) => {
        var cnt = querySnapshot.size;
