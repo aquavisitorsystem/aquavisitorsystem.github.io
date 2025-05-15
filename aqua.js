@@ -9048,6 +9048,15 @@ var clearlogheader = function(){
     document.getElementById('getall').style.display = 'none';
     document.getElementById('help').style.display = 'none';
 }
+
+var clearloadreport = function(){
+    document.getElementById('logo').style.display = 'none';
+    document.getElementById('header').style.display = 'none';
+    document.getElementById('help').style.display = 'none';
+    document.getElementById('schedule').style.display = 'none';
+    document.getElementById('getall').style.display = 'none';
+    document.getElementById('container').style.display = 'none';
+}
 	 
 var updatescheduleshome = function(){
     document.getElementById('logins').style.display = 'contents';
@@ -9513,6 +9522,13 @@ if (g_report === 'checkins') {
 
 if (g_report === 'inactive') {
     loadinactive();
+} else {
+    console.log('string IS empty');
+}  
+
+if (g_report === 'active') {
+    clearloadreport();
+    loaddbeverythingall();
 } else {
     console.log('string IS empty');
 }  
