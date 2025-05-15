@@ -218,7 +218,7 @@ firebase.initializeApp(firebaseConfig);
                 }
 	   if (login === 'walkin'){
                      SaveDoc.set({
-                login: data["login"],
+                login: data["walkinid"],
                 firstname: data["fname"],
                 lastname: data["lname"],
                 company: data["cname"],
@@ -6459,7 +6459,7 @@ var title = "<div id='reptitle'><center><h1>Aqua-Aerobic Systems Visitor Schedul
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-       if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 1){
+       if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 1){
             var ndt = dt.getDay();
            console.log("mon ndt: " + ndt);
           
@@ -6479,7 +6479,7 @@ var dt = new Date(dt1);
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 2){
+        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 2){
         
            console.log("tue ndt: " + ndt);
           
@@ -6499,7 +6499,7 @@ cnt1 = cnt1 - 1
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg  === 3){
+        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 3){
 
        
            console.log("wed ndt: " + ndt);
@@ -6519,7 +6519,7 @@ var dt = new Date(dt1);
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg  === 4){
+        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 4){
         
            console.log("thu ndt: " + ndt);
    
@@ -6538,7 +6538,7 @@ cnt1 = cnt1 - 1
         var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
         var dgg = new Date();
         let daygg = dgg.getDay();
-        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg  === 5){
+        if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && ndt === 5){
         
            console.log("fri ndt: " + ndt);
     
@@ -7498,7 +7498,12 @@ dates = new Date(doc.data().date12).toLocaleDateString("en", options)
   if (doc.data().mon === true) {
         var dt = new Date(dt1);
         var ndt = dt.getDay();
-       if (dt1 >= date13 && dt1 <= date14 && ndt === 1){
+        var ggdate13 = new Date(date13).toLocaleDateString("fr-CA", options2);
+        var ggdt1 = new Date().toLocaleDateString("fr-CA", options2);
+        var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
+        var dgg = new Date();
+        let daygg = dgg.getDay();
+       if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 1){
             var ndt = dt.getDay();
            console.log("mon ndt: " + ndt);
           
@@ -7514,7 +7519,12 @@ cnt1 = cnt1 - 1
     if (doc.data().tue === true)  {
 var dt = new Date(dt1);
         var ndt = dt.getDay();
-        if (dt1 >= date13 && dt1 <= date14 && ndt === 2){
+        var ggdate13 = new Date(date13).toLocaleDateString("fr-CA", options2);
+        var ggdt1 = new Date().toLocaleDateString("fr-CA", options2);
+        var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
+        var dgg = new Date();
+        let daygg = dgg.getDay();
+       if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 2){
         
            console.log("tue ndt: " + ndt);
           
@@ -7530,7 +7540,12 @@ cnt1 = cnt1 - 1
     if (doc.data().wed === true) {
  var dt = new Date(dt1);
         var ndt = dt.getDay();
-     if (dt1 >= date13 && dt1 <= date14 && ndt === 3){
+        var ggdate13 = new Date(date13).toLocaleDateString("fr-CA", options2);
+        var ggdt1 = new Date().toLocaleDateString("fr-CA", options2);
+        var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
+        var dgg = new Date();
+        let daygg = dgg.getDay();
+       if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg  === 3){
 
        
            console.log("wed ndt: " + ndt);
@@ -7546,7 +7561,12 @@ cnt1 = cnt1 - 1
     if (doc.data().thu === true) {
 var dt = new Date(dt1);
         var ndt = dt.getDay();
-     if (dt1 >= date13 && dt1 <= date14 && ndt === 4){
+        var ggdate13 = new Date(date13).toLocaleDateString("fr-CA", options2);
+        var ggdt1 = new Date().toLocaleDateString("fr-CA", options2);
+        var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
+        var dgg = new Date();
+        let daygg = dgg.getDay();
+       if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 4){
         
            console.log("thu ndt: " + ndt);
    
@@ -7561,7 +7581,13 @@ cnt1 = cnt1 - 1
     if (doc.data().fri === true) {
       var dt = new Date(dt1);
         var ndt = dt.getDay();
-     if (dt1 >= date13 && dt1 <= date14 && ndt === 5){
+        var ggdate13 = new Date(date13).toLocaleDateString("fr-CA", options2);
+        var ggdt1 = new Date().toLocaleDateString("fr-CA", options2);
+        var ggdate14 = new Date(date14).toLocaleDateString("fr-CA", options2);
+        var dgg = new Date();
+        let daygg = dgg.getDay();
+
+if (ggdt1 >= ggdate13 && ggdt1 <= ggdate14 && daygg === 5){
         
            console.log("fri ndt: " + ndt);
     
@@ -8131,6 +8157,13 @@ document.head.innerHTML = header;
     spinnow(3000);
     setTimeout("sortByDate2(7)", 3000);
 }
+
+function removeFirstComma(str) {
+    if (str.match(/,.*,/)) {
+      return str.replace(',', '');
+    }
+    return str;
+  }
   
 var loaddbtoday =  function(){
     var db = firebase.firestore();
@@ -8360,16 +8393,26 @@ docs = docs.filter(onlyUnique);
 console.log("docs:" + docs);
 const chunkSize = 10;
 var chunk;
+const optionsFullDate = { 
+    weekday: 'long',
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' };
 let todays = new Date().toLocaleDateString();
+//let todays = new Date().toLocaleDateString();
+var todayfulldate = new Date().toLocaleDateString("en-US", optionsFullDate);
+
+todayfulldate = removeFirstComma(todayfulldate);
+console.log(todayfulldate);
 var header = "<head><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><style>table, td, th {  border: 1px solid #cbbbbb;  text-align: left;}table {  border-collapse: collapse;  width: 100%;}th, td {  padding: 10px;} tr:nth-child(even) {  background-color: #dddddd;}</style></head>";
 //var title = "<div id='reptitle'><center><h1 style='color: #005098;margin-block-end: 0;'>Active Visitor(s) for: " + todays + "</h1></center></div>";      
-var title = "<div id='reptitle'><center><h1 style='color: #005098;margin-block-end: 0;'>Our Guests for: " + todays + "</h1></center></div>";      
+var title = "<div id='reptitle'><center><h1 style='color: #005098;margin-block-end: 0;'>" + todayfulldate + "</h1></center></div>";      
 document.write(title);
 var links = "'https://aquameeting.github.io/?ipad=Yes'";
 var buttons =  '<button onclick="window.location.href=' + links + ';" style="background-color: yellow;font-weight: bold;border-color: black;font-size: xx-small;">Tap Here</button>';
 //var buttons =  '<a href=' + links + ';" style="font-size: small;">tap here</a>';
 //document.write("<center>**Find your schedule below and tap the <button style='background-color: yellow;font-weight: bold;border-color: black;font-size: small;'>HERE</button> button.</center> <p  style='font-size: small;'>**If schedule not found, " + buttons + "</p>"); 
-document.write("<center>**Find your schedule below and tap the <button style='background-color: yellow;font-weight: bold;border-color: black;font-size: small;'>HERE</button> button.</center> <p  style='font-size: small;'>**If schedule not found, please let receptionist know.</p>"); 
+document.write("<center style='color: gray;'>**find your schedule row below, tap <button style='background-color: yellow;font-weight: bold;border-color: black;font-size: small;'>HERE</button> button.</center> <p  style='font-size: small;color:gray'>**If schedule not found, please let receptionist know.</p>"); 
 console.log("Total cnt1:" + cnt1);
 if (cnt1 === 0){
     var nodata = "<center><br>No visitor data found<br></center>";
@@ -9359,6 +9402,9 @@ console.log(g_logreport);
 
 var g_logvalue= urlParams.get('logvalue')
 console.log(g_logvalue);
+
+var g_walkinid= urlParams.get('walkinid')
+console.log(g_walkinid);
 	    
 //loaddbtoday
 	    
@@ -9378,6 +9424,7 @@ if ((checkin != null && checkin != '') &&  (keyid != null && keyid != '')) {
         document.getElementById('logo').style.display = 'none';
         var data = {
             "login": 'walkin',
+            "walkinid" : g_walkinid.trim().toUpperCase(),
             "key": g_fname.trim().toUpperCase() + g_lname.trim().toUpperCase() + gdate77,
             "fname": g_fname.trim().toUpperCase(),
             "lname": g_lname.trim().toUpperCase(),

@@ -3,10 +3,8 @@
   <li><b>Latest updates</b></li>
    <ul><li><b>New Feature(s):</b></li></ul>
   <ul style="padding-left:60px">
-    <li>New report: activitylog - shows live visitor dashboard log.</li>
-    <li>New report: company - search by full or partial start of company name.</li>
-    <li>New report: name - search by full or partial start of guest last name.</li>
-    <li>Reminder morning email sent to Aqua employee that has guest visiting that day.</li>
+    <li>Updated <a href="https://aquavisitorsystem.github.io/help/Aqua%20Visitor%20Check.htm">help page</a></li>
+    <li>"What's New" pop-up shows every 30 days</li>
   </ul>
   <br>
   <ul><b>View Reports:</b></ul> 
