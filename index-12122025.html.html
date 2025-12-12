@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  	  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*;">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+         <style media="screen">
+        /* Style inputs */
+             input[type=text], input[type=email], textarea {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          background-color: aliceblue;
+        }
+        
+        /* Style the submit button */
+     /* Style the submit button */
+        button {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: large;
+        }
+        
+         button2 {
+          width: 50%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: large;
+        }
+
+        
+        /* Add a background color to the submit button on mouse-over */
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+	      
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.weekDays-selector input {
+  display: none!important;
+}
+
+.weekDays-selector input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
+  height: 40px;
+  width: 30px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=checkbox]:checked + label {
+  background: #2AD705;
+  color: #ffffff;
+}
+      </style>  
+    <title>Aqua Visitor Managment System</title>
+<link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+  </head>
+<div id="loading">
+  <body style="font-family: sans-serif;font-size: large;">
+      <a href="https://aquavisitorsystem.github.io/"><img id="logo" src="aqua.png" width="250px" alt="Go Home"></a><br>
+      <h1 id="header" style="text-align: center;">Aqua Visitor Management System</h1>
+      <div id="help"><center> <button onclick="location.href='https://aquavisitorsystem.github.io/help/help.html'" type="button" style="width: 120px;padding: unset;background-color: grey;">help</button>  <button type="button" onclick="javascript:callback()" style="width: 120px;padding: unset;background-color: grey;">what's new?</button></center></div>
+      <div id="back"><center><a href="javascript:history.back();">[Go Back]</a></center></div>  
+      <button id="schedule" type="button" style="background-color: orangered;">Schedule Visitor</button>
+       <button id="getall" type="button" style="background-color: navy;">View Scheduled Visits</button>
+       <div id="container">
+    <form id="forms">
+      <input type="hidden" id="bitly" name="bitly">  
+      <input type="hidden" id="id" name="id"> 
+     <div id="checkedin"></div>
+      <div id="logins">
+          <datalist id="loginlist"></datalist>
+       <label for="login" id="loginlabel" style="color: black;font-weight: bold;">Aqua Employee Guest is Visiting (Aqua UserID)</label><br>
+<input list="loginlist" type="text" id="login" name="login" placeholder="Enter aqua userid | example:ckonkol" style="background-color: lightyellow;width: 600px;text-transform: lowercase;"><label id="emaillabel" style="color: black;font-weight: bold;">@aqua-aerobic.com</label>
+      </div>
+	  
+	<div id="meetingfields">
+    <label for="fname" style="color: black;font-weight: bold;">Guest First Name</label>
+    <input type="text" id="fname" name="fname" placeholder="Enter guest first name or Company Name if name TBD (Example: WKRP Radio)" style="text-transform: uppercase;">
+
+    <label for="lname" style="color: black;font-weight: bold;">Guest Last Name</label>
+    <input type="text" id="lname" name="lname" placeholder="Enter guest last name or Guest(#) if name TBD. (Examples: GUEST, GUEST1, GUEST2, etc.)" style="text-transform: uppercase;">
+
+    <label for="cname" style="color: black;font-weight: bold;">Guest Company Name</label>
+    <input type="text" id="cname" name="cname" placeholder="Enter guest company name or GUEST" style="text-transform: uppercase;">
+
+    <label for="email" style="color: black;font-weight: bold;">Guest Email</label>
+    <input type="email" id="email" name="email" placeholder="Enter guest email address or TBD" style="text-transform: uppercase;">
+    <br>
+
+    <div id="datedetails">
+        <label for="date" style="color: black;font-weight: bold;">Date & Time Guest is Visiting Aqua: </label>
+        <input type="datetime-local" id="date" name="date" style="font-family: sans-serif;">
+        <i style="color: gray;"> If time unknown use 8:00am</i>
+
+        <details>
+            <summary style="cursor: pointer; padding: 5px; background-color: #f0f0f0;">[Click to add more dates OR Weekly Recurring Dates]</summary>
+            <br>
+            <b>Individual Dates</b><br />
+            <i style="font-size: small;">If you select individual dates you cannot use below <b>Weekly Recurring Dates</b></i><br />
+            
+            <ul>Date 2:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date2" name="date2" style="font-family: sans-serif;"></ul>
+            <ul>Date 3:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date3" name="date3" style="font-family: sans-serif;"></ul>
+            <ul>Date 4:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date4" name="date4" style="font-family: sans-serif;"></ul>
+            <ul>Date 5:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date5" name="date5" style="font-family: sans-serif;"></ul>
+            <ul>Date 6:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date6" name="date6" style="font-family: sans-serif;"></ul>
+            <ul>Date 7:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date7" name="date7" style="font-family: sans-serif;"></ul>
+            <ul>Date 8:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date8" name="date8" style="font-family: sans-serif;"></ul>
+            <ul>Date 9:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date9" name="date9" style="font-family: sans-serif;"></ul>
+            <ul>Date 10:&nbsp;&nbsp;<input type="datetime-local" id="date10" name="date10" style="font-family: sans-serif;"></ul>
+            <ul>Date 11:&nbsp;&nbsp;<input type="datetime-local" id="date11" name="date11" style="font-family: sans-serif;"></ul>
+            <ul>Date 12:&nbsp;&nbsp;<input type="datetime-local" id="date12" name="date12" style="font-family: sans-serif;"></ul>
+            <br />
+
+            <details>
+                <summary><i style="color: gray;">Weekly Recurring Dates</i></summary>
+                <i style="font-size: small;">If you select recurring dates you cannot use above <b>Individual Dates!</b></i><br /><br />
+                Beginning Date:<br /><input type="date" id="date13" name="date13" style="font-family: sans-serif;"><br />
+                End Date:<br /><input type="date" id="date14" name="date14" style="font-family: sans-serif;"><br />
+                Choose Time:<br /><input type="time" id="rectime" name="rectime" step="900"><br /> <br />
+                Choose Recurring Day(s):
+                <div class="weekDays-selector">
+                    <input type="checkbox" id="mon" name="mon" class="weekday" />
+                    <label for="mon">M</label>
+                    <input type="checkbox" id="tue" name="tue" class="weekday" />
+                    <label for="tue">T</label>
+                    <input type="checkbox" id="wed" name="wed" class="weekday" />
+                    <label for="wed">W</label>
+                    <input type="checkbox" id="thu" name="thu" class="weekday" />
+                    <label for="thu">T</label>
+                    <input type="checkbox" id="fri" name="fri" class="weekday" />
+                    <label for="fri">F</label>
+                </div>
+            </details>
+        </details>
+        <br />
+    </div>
+
+    <label for="message" style="color: black;font-weight: bold;">Aqua Employee Guest is Visiting (Full Name)</label>
+    <textarea id="message" name="message" placeholder="Enter Aqua Employee Full Name" style="height: 30px;font-family: sans-serif;text-transform: uppercase;"></textarea>
+    
+    <canvas id="qrcode"></canvas>
+
+    <span id="emaillink" style="color: black;font-weight: bold;"></span><br>
+    <span id="remove" style="color: black;font-weight: bold;font-size: small;"></span><br>
+    <span id="removeYes" style="color: black;font-weight: bold;font-size: 12px;"></span>
+    <span id="removeNo" style="color: black;font-weight: bold;font-size: 12px;"></span>
+</div>
+		
+   <button id="submit_msg" type="button" style="background-color: orangered;">Schedule Guest (All fields required!)</button>
+         <button id="update_db" type="button" style="padding: 5px;">Update Visit</button>
+	 <button id="checkin" type="button" style="padding: 50px;">Tap Here to Check-In/Out</button>
+        <button id="get_id" type="button" style="background-color: navy;">View Scheduled Visits</button>
+       <button id="get_msg" type="button" style="background-color: cornflowerblue;">Go Home</button>
+      <br>
+      <center>
+	       <label id="reset" style="color: black;font-weight: bold;font-size: 18px;"></label><br><br>
+       <button id="get_id2" type="button" style="display: block;width: fit-content;background-color: gray;">**View Inactive Scheduled Visits</button>
+      </center>
+    </form>
+      
+            </div>
+       
+    <div id="table"></div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script> 
+      <script src="aqua.js"></script>
+<script src="popup.js"></script>
+  </body>
+    </div>
+</html>
+<script type="text/javascript"> 
+// detect user agent
+	 var ua = navigator.userAgent;
+         var isMobile = /Android|webOS|iPhone|iPad|iPod/i.test(ua);
+	var isIPadPro = /Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+        console.log("Is mobile?: " + isMobile);
+	  console.log("Is iPad Pro?: " + isIPadPro);
+	  if (isMobile || isIPadPro) {
+	      document.getElementById("help").style.display = "none"
+	      //alert("on mobile: " + navigator.platform); // display the platform you're on.
+	      var userAgent = navigator.userAgent.toLowerCase();
+	      console.log("Device Type:" + userAgent);
+	  } 
+</script> 
+	<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("fxGG0I_OLtZPd1zPM");
+   })();
+</script>
