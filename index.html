@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-
+  	  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -25,88 +23,8 @@
           background-color: aliceblue;
         }
         
-        /* OVERRIDE for Date/Time Inputs to keep them compact */
-        .datetime-input, .time-input, .date-only-input {
-            width: auto !important; 
-            display: inline-block !important;
-            background-color: white !important;
-            cursor: pointer;
-        }
-
-        /* --- UPDATED CSS: WIDER TIME / REMOVED GAP --- */
-        .xdsoft_datetimepicker .xdsoft_timepicker {
-            width: 75px !important; 
-        }
-        .xdsoft_datetimepicker .xdsoft_datepicker {
-            margin-right: 0 !important; 
-        }
-
-/* --- CALENDAR ICON LOGIC --- */
-
-        /* 1. Add extra padding to the right so text doesn't cover the icon area */
-        .datetime-input, .date-only-input, .time-input {
-            padding-right: 30px !important;
-        }
-
-        /* 2. Show Icon ONLY when placeholder is visible (Value is empty) */
-        .datetime-input:placeholder-shown, 
-        .date-only-input:placeholder-shown,
-        .time-input:placeholder-shown {
-            /* This is a standard Calendar Icon encoded as a background image */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 8px center; /* Position: 8px from right side */
-            background-size: 18px; /* Size of the icon */
-        }
-        /* --------------------------------------------- */
-
-/* --- DATE PICKER POPUP COLORS --- */
-        
-        /* 1. Set the background color of the whole popup to #d1f4f5 */
-        .xdsoft_datetimepicker,
-        .xdsoft_datetimepicker .xdsoft_datepicker,
-        .xdsoft_datetimepicker .xdsoft_timepicker {
-            background-color: #d1f4f5 !important;
-        }
-
-       /* 2. Make the "Clear Date" option look like a real button */
-        .xdsoft_clear_btn {
-            /* Layout: This forces it to be smaller than the container */
-            display: block !important;
-            width: 85% !important;        /* 85% width so it doesn't touch edges */
-            margin: 10px auto !important; /* 'auto' centers it left/right */
-            padding: 8px 0 !important;    /* Internal spacing for the text */
-            
-            /* Visuals: Colors and Shapes */
-            background-color: #f44336 !important; /* Red */
-            color: white !important;
-            border-radius: 20px !important;       /* Rounded "pill" corners */
-            
-            /* Text & Interaction */
-            text-align: center;
-            font-weight: bold;
-            font-size: 11px;
-            text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle drop shadow */
-            border: none !important;
-            
-            /* Placement */
-            clear: both; /* Ensures it sits below the calendar/time columns */
-        }
-        
-        .xdsoft_clear_btn:hover {
-            background-color: #d32f2f !important; /* Darker red on hover */
-            transform: translateY(-1px);          /* Slight lift effect */
-        }
-
-        /* 3. Ensure Month/Year text is visible on the light blue background */
-        .xdsoft_datetimepicker .xdsoft_label {
-            background-color: transparent !important;
-            color: black !important;
-        }
-
         /* Style the submit button */
+     /* Style the submit button */
         button {
           width: 100%;
           background-color: #4CAF50;
@@ -171,6 +89,68 @@ tr:nth-child(even) {
   background: #2AD705;
   color: #ffffff;
 }
+input[type="datetime-local"],
+input[type="date"],
+input[type="time"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: aliceblue;
+  font-family: sans-serif;
+  height: auto; /* ensures same vertical feel */
+/* Restore original compact Date/Time field size */
+}
+#date,
+#date2,
+#date3,
+#date4,
+#date5,
+#date6,
+#date7,
+#date8,
+#date9,
+#date10,
+#date11,
+#date12,
+#rectime {
+  width: 200px !important;   /* matches old native size */
+  display: inline-block;
+  padding: 6px 8px;
+  margin: 4px 6px 4px 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.dt-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dt-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  color: #888;
+  padding: 0;
+  line-height: 1;
+  display: none;
+  z-index: 5; /* 🔥 REQUIRED */
+}
+
+
+.dt-clear:hover {
+  color: #000;
+}
+
+
       </style>  
     <title>Aqua Visitor Managment System</title>
 <link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
@@ -207,13 +187,9 @@ tr:nth-child(even) {
     <label for="email" style="color: black;font-weight: bold;">Guest Email</label>
     <input type="email" id="email" name="email" placeholder="Enter guest email address or TBD" style="text-transform: uppercase;">
     <br>
-
     <div id="datedetails">
-        <label for="date_visual" style="color: black;font-weight: bold;">Date & Time Guest is Visiting Aqua: </label>
-        
-        <input type="hidden" id="date" name="date">
-        <input type="text" id="date_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-        
+        <label for="date" style="color: black;font-weight: bold;">Date & Time Guest is Visiting Aqua: </label>
+        <input type="text" id="date" name="date" style="font-family:sans-serif;width:180px;display:inline-block;padding-right:28px;" placeholder="Select Date and Time">
         <i style="color: gray;"> If time unknown use 8:00am</i>
 
         <details>
@@ -222,68 +198,25 @@ tr:nth-child(even) {
             <b>Individual Dates</b><br />
             <i style="font-size: small;">If you select individual dates you cannot use below <b>Weekly Recurring Dates</b></i><br />
             
-            <ul>Date 2:&nbsp;&nbsp;&nbsp;
-                <input type="hidden" id="date2" name="date2">
-                <input type="text" id="date2_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 3:&nbsp;&nbsp;&nbsp;
-                <input type="hidden" id="date3" name="date3">
-                <input type="text" id="date3_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 4:&nbsp;&nbsp;&nbsp;
-                <input type="hidden" id="date4" name="date4">
-                <input type="text" id="date4_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 5:&nbsp;&nbsp;&nbsp;
-                <input type="hidden" id="date5" name="date5">
-                <input type="text" id="date5_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 6:&nbsp;&nbsp;&nbsp;
-                <input type="hidden" id="date6" name="date6">
-                <input type="text" id="date6_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 7:&nbsp;&nbsp;&nbsp;
-                <input type="hidden" id="date7" name="date7">
-                <input type="text" id="date7_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 8:&nbsp;&nbsp;&nbsp;
-                <input type="hidden" id="date8" name="date8">
-                <input type="text" id="date8_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 9:&nbsp;&nbsp;&nbsp;
-                <input type="hidden" id="date9" name="date9">
-                <input type="text" id="date9_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 10:&nbsp;&nbsp;
-                <input type="hidden" id="date10" name="date10">
-                <input type="text" id="date10_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 11:&nbsp;&nbsp;
-                <input type="hidden" id="date11" name="date11">
-                <input type="text" id="date11_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
-            <ul>Date 12:&nbsp;&nbsp;
-                <input type="hidden" id="date12" name="date12">
-                <input type="text" id="date12_visual" class="datetime-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date & Time">
-            </ul>
+            <ul>Date 2:&nbsp;&nbsp;&nbsp;<input type="text" id="date2" name="date2" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 3:&nbsp;&nbsp;&nbsp;<input type="text" id="date3" name="date3" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 4:&nbsp;&nbsp;&nbsp;<input type="text" id="date4" name="date4" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 5:&nbsp;&nbsp;&nbsp;<input type="text" id="date5" name="date5" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 6:&nbsp;&nbsp;&nbsp;<input type="text" id="date6" name="date6" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 7:&nbsp;&nbsp;&nbsp;<input type="text" id="date7" name="date7" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 8:&nbsp;&nbsp;&nbsp;<input type="text" id="date8" name="date8" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 9:&nbsp;&nbsp;&nbsp;<input type="text" id="date9" name="date9" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 10:&nbsp;&nbsp;<input type="text" id="date10" name="date10" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 11:&nbsp;&nbsp;<input type="text" id="date11" name="date11" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
+            <ul>Date 12:&nbsp;&nbsp;<input type="text" id="date12" name="date12" style="font-family: sans-serif;"  placeholder="Select Date and Time"></ul>
             <br />
 
             <details>
                 <summary><i style="color: gray;">Weekly Recurring Dates</i></summary>
                 <i style="font-size: small;">If you select recurring dates you cannot use above <b>Individual Dates!</b></i><br /><br />
-                
-                Beginning Date:<br />
-                <input type="hidden" id="date13" name="date13">
-                <input type="text" id="date13_visual" class="date-only-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date"><br />
-                
-                End Date:<br />
-                <input type="hidden" id="date14" name="date14">
-                <input type="text" id="date14_visual" class="date-only-input" style="font-family: sans-serif;padding: 5px 10px; margin: 5px 0;" placeholder="Select Date"><br />
-                
-                Choose Time:<br />
-                <input type="hidden" id="rectime" name="rectime">
-                <input type="text" id="rectime_visual" class="time-input" style="padding: 5px 10px; margin: 5px 0;" placeholder="Select Time"><br /> <br />
-                
+                Beginning Date:<br /><input type="date" id="date13" name="date13" style="font-family:sans-serif;width:180px;display:inline-block;padding-right:28px;"  placeholder="Select Date and Time"><br />
+                End Date:<br /><input type="date" id="date14" name="date14" style="font-family:sans-serif;width:180px;display:inline-block;padding-right:28px;"  placeholder="Select Date and Time"><br />
+                Choose Time:<br /><input type="text" id="rectime" name="rectime" placeholder="Select Time"  placeholder="Select Time"><br /> <br />
                 Choose Recurring Day(s):
                 <div class="weekDays-selector">
                     <input type="checkbox" id="mon" name="mon" class="weekday" />
@@ -334,9 +267,7 @@ tr:nth-child(even) {
 <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script> 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
       <script src="aqua.js"></script>
 <script src="popup.js"></script>
   </body>
@@ -355,180 +286,6 @@ tr:nth-child(even) {
 	      var userAgent = navigator.userAgent.toLowerCase();
 	      console.log("Device Type:" + userAgent);
 	  } 
-
-    // --- XDSOFT DATETIMEPICKER CONFIGURATION ---
-
-    var centralTimeString = new Date().toLocaleString("en-US", {timeZone: "America/Chicago"});
-    var centralDate = new Date(centralTimeString);
-    
-    // Generate 24hr times 06:00 to 18:00
-    var allowedTimes = [];
-    for (var h = 7; h <= 18; h++) {
-        var hourString = h < 10 ? '0' + h : h;
-        allowedTimes.push(hourString + ':00');
-        if (h < 18) { 
-            allowedTimes.push(hourString + ':15');
-            allowedTimes.push(hourString + ':30');
-            allowedTimes.push(hourString + ':45');
-        }
-    }
-
-  // 1. STANDARD DATE+TIME INPUTS
-    $('.datetime-input').datetimepicker({
-        format: 'm/d/Y h:i A',
-        formatTime: 'h:i A',
-        allowTimes: allowedTimes,
-        step: 15,
-        defaultDate: centralDate,
-        startDate: centralDate,
-        // --- Generate Button with CLASS ONLY (No Inline Styles) ---
-        onGenerate: function(ct, $input) {
-            var $this = $(this);
-            if ($this.find('.xdsoft_clear_btn').length === 0) {
-                // We create the div with just the class. CSS handles the look.
-                var $btn = $('<div class="xdsoft_clear_btn">Clear Date & Time</div>');
-                
-                $btn.click(function() {
-                    $input.val(''); 
-                    var hiddenInputId = $input.attr('id').replace('_visual', '');
-                    $('#' + hiddenInputId).val(''); 
-                    $this.hide(); 
-                });
-                
-                $this.append($btn);
-            }
-        },
-        onChangeDateTime: function(dp, $input) {
-            var hiddenInputId = $input.attr('id').replace('_visual', '');
-            if(dp) {
-                var isoDate = moment(dp).format("YYYY-MM-DDTHH:mm");
-                $('#' + hiddenInputId).val(isoDate);
-            } else {
-                $('#' + hiddenInputId).val('');
-            }
-        }
-    });
-
-    // 2. DATE ONLY INPUTS
-    $('.date-only-input').datetimepicker({
-        timepicker: false,
-        format: 'm/d/Y',
-        defaultDate: centralDate,
-        startDate: centralDate,
-        onGenerate: function(ct, $input) {
-            var $this = $(this);
-            if ($this.find('.xdsoft_clear_btn').length === 0) {
-                var $btn = $('<div class="xdsoft_clear_btn">Clear Date</div>');
-                
-                $btn.click(function() {
-                    $input.val(''); 
-                    var hiddenInputId = $input.attr('id').replace('_visual', '');
-                    $('#' + hiddenInputId).val('');
-                    $this.hide();
-                });
-                
-                $this.append($btn);
-            }
-        },
-        onChangeDateTime: function(dp, $input) {
-            var hiddenInputId = $input.attr('id').replace('_visual', '');
-            if(dp) {
-                var isoDate = moment(dp).format("YYYY-MM-DD");
-                $('#' + hiddenInputId).val(isoDate);
-            } else {
-                $('#' + hiddenInputId).val('');
-            }
-        }
-    });
-
-    // 3. TIME ONLY INPUT
-    $('.time-input').datetimepicker({
-        datepicker: false,
-        format: 'h:i A',
-        formatTime: 'h:i A',
-        allowTimes: allowedTimes,
-        step: 15,
-        defaultDate: centralDate,
-        startDate: centralDate,
-        onGenerate: function(ct, $input) {
-            var $this = $(this);
-            if ($this.find('.xdsoft_clear_btn').length === 0) {
-                var $btn = $('<div class="xdsoft_clear_btn">Clear Time</div>');
-                
-                $btn.click(function() {
-                    $input.val(''); 
-                    var hiddenInputId = $input.attr('id').replace('_visual', '');
-                    $('#' + hiddenInputId).val('');
-                    $this.hide();
-                });
-                
-                $this.append($btn);
-            }
-        },
-        onChangeDateTime: function(dp, $input) {
-            var hiddenInputId = $input.attr('id').replace('_visual', '');
-            if(dp) {
-                var isoTime = moment(dp).format("HH:mm");
-                $('#' + hiddenInputId).val(isoTime);
-            } else {
-                $('#' + hiddenInputId).val('');
-            }
-        }
-    });
-    // --- INTERCEPTOR: POPULATE VISUAL FIELDS WHEN AQUA.JS LOADS DATA ---
-    // Since aqua.js populates hidden fields (e.g. "date") asynchronously,
-    // we use Object.defineProperty to intercept when aqua.js sets .value
-    // and immediately update the visual field (e.g. "date_visual").
-
-    var dateFields = [
-        'date', 'date2', 'date3', 'date4', 'date5', 'date6', 
-        'date7', 'date8', 'date9', 'date10', 'date11', 'date12', 
-        'date13', 'date14', 'rectime'
-    ];
-
-    dateFields.forEach(function(id) {
-        var hiddenInput = document.getElementById(id);
-        var visualInput = document.getElementById(id + '_visual');
-        
-        if (hiddenInput && visualInput) {
-            // Get the original property descriptor for 'value' on the input prototype
-            var descriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
-            
-            // Override the setter for this specific hidden input
-            Object.defineProperty(hiddenInput, 'value', {
-                set: function(val) {
-                    // 1. Call the original setter to actually update the hidden input
-                    descriptor.set.call(this, val);
-                    
-                    // 2. Format and update the visual input
-                    if (val) {
-                        var formatted = '';
-                        // Determine format based on field type
-                        if(id === 'rectime') {
-                             // Assuming stored as HH:mm (24h)
-                             formatted = moment(val, "HH:mm").format("h:mm A");
-                        } else if (id === 'date13' || id === 'date14') {
-                             // Assuming stored as YYYY-MM-DD
-                             formatted = moment(val).format("MM/DD/YYYY");
-                        } else {
-                             // Standard DateTime, assuming ISO string
-                             formatted = moment(val).format("MM/DD/YYYY h:mm A");
-                        }
-                        
-                        if (formatted !== 'Invalid date') {
-                            visualInput.value = formatted;
-                        }
-                    } else {
-                        visualInput.value = '';
-                    }
-                },
-                get: function() {
-                    return descriptor.get.call(this);
-                }
-            });
-        }
-    });
-
 </script> 
 	<script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
@@ -537,4 +294,74 @@ tr:nth-child(even) {
    (function(){
       emailjs.init("fxGG0I_OLtZPd1zPM");
    })();
+
+   // Initialize Flatpickr
+   document.addEventListener('DOMContentLoaded', function() {
+       // Config for Date + Time inputs
+       flatpickr("#date, #date2, #date3, #date4, #date5, #date6, #date7, #date8, #date9, #date10, #date11, #date12", {
+           enableTime: true,
+           dateFormat: "m/d/Y h:i K", // Changed to h:i K for 12-hour AM/PM
+           minTime: "06:00",
+           maxTime: "17:00",
+           minuteIncrement: 15,
+           time_24hr: false, 
+// --- ADD THIS SECTION START ---
+    onReady: function(selectedDates, dateStr, instance) {
+        // Create the clear button
+        const clearBtn = document.createElement("div");
+        clearBtn.innerHTML = "<b>Clear Date</b>";
+        clearBtn.style.padding = "10px";
+        clearBtn.style.textAlign = "center";
+        clearBtn.style.cursor = "pointer";
+        clearBtn.style.color = "red";
+        clearBtn.style.borderTop = "1px solid #e6e6e6";
+        clearBtn.style.backgroundColor = "#fff";
+
+        // When clicked, clear the date and close the calendar
+        clearBtn.addEventListener("click", function() {
+            instance.clear();
+            instance.close();
+        });
+
+        // Add the button to the bottom of the calendar
+        instance.calendarContainer.appendChild(clearBtn);
+    }
+    // --- ADD THIS SECTION END ---
+
+       });
+
+       // Config for Recurring Time input (Time only)
+       flatpickr("#rectime", {
+           enableTime: true,
+           noCalendar: true,
+           dateFormat: "h:i K", // Changed to h:i K for 12-hour AM/PM
+           minTime: "06:00",
+           maxTime: "17:00",
+           minuteIncrement: 15,
+           time_24hr: false
+       });
+   });
+
+function wireClearButtons() {
+  document.querySelectorAll('.dt-wrapper').forEach(wrapper => {
+    const input = wrapper.querySelector('input');
+    const clearBtn = wrapper.querySelector('.dt-clear');
+    if (!input || !clearBtn) return;
+
+    // Initial state (edit mode / reload)
+    clearBtn.style.display = input.value ? 'block' : 'none';
+
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      if (input._flatpickr) {
+        input._flatpickr.clear();
+      }
+      clearBtn.style.display = 'none';
+    });
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded', wireClearButtons);
+
 </script>
