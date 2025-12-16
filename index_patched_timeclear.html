@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  	  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+         <style media="screen">
+        /* Style inputs */
+             input[type=text], input[type=email], textarea {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          background-color: aliceblue;
+        }
+        
+        /* Style the submit button */
+     /* Style the submit button */
+        button {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: large;
+        }
+        
+         button2 {
+          width: 50%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: large;
+        }
+
+        
+        /* Add a background color to the submit button on mouse-over */
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+	      
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.weekDays-selector input {
+  display: none!important;
+}
+
+.weekDays-selector input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
+  height: 40px;
+  width: 30px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=checkbox]:checked + label {
+  background: #2AD705;
+  color: #ffffff;
+}
+      
+/* ============================================================
+   Friendly Date/Time UI (keeps hidden datetime-local fields untouched
+   so Firebase format stays EXACTLY: YYYY-MM-DDTHH:MM)
+   ============================================================ */
+.dtui-hidden { display: none !important; }
+.dtui { display: inline-block; margin: 1px 0; }
+.dtui-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.dtui-date, .dtui-time {
+  padding: 6px 5px;
+  font-size: 16px;
+  border: 1px solid #c9c9c9;
+  border-radius: 2px;
+}
+.dtui-time { min-width: 140px; }
+.dtui-quick, .dtui-clear {
+  padding: 6px 5px;
+  font-size: 14px;
+  border: 1px solid #bdbdbd;
+  background: #f5f5f5;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.dtui-quick:hover, .dtui-clear:hover { background: #e9e9e9; }
+.dtui-preview { font-size: 12px; color: #555; white-space: nowrap; }
+@media (max-width: 600px) {
+  .dtui-date, .dtui-time { width: 100%; }
+  .dtui-preview { width: 100%; }
+}
+/* Fix for Date 2 - Date 12 spacing */
+        #datedetails ul {
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+</style>  
+    <title>Aqua Visitor Managment System</title>
+<link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+  </head>
+<div id="loading">
+  <body style="font-family: sans-serif;font-size: large;">
+      <a href="https://aquavisitorsystem.github.io/"><img id="logo" src="aqua.png" width="250px" alt="Go Home"></a><br>
+      <h1 id="header" style="text-align: center;">Aqua Visitor Management System</h1>
+      <div id="help"><center> <button onclick="location.href='https://aquavisitorsystem.github.io/help/help.html'" type="button" style="width: 120px;padding: unset;background-color: grey;">help</button>  <button type="button" onclick="javascript:callback()" style="width: 120px;padding: unset;background-color: grey;">what's new?</button></center></div>
+      <div id="back"><center><a href="javascript:history.back();">[Go Back]</a></center></div>  
+      <button id="schedule" type="button" style="background-color: orangered;">Schedule Visitor</button>
+       <button id="getall" type="button" style="background-color: navy;">View Scheduled Visits</button>
+       <div id="container">
+    <form id="forms">
+      <input type="hidden" id="bitly" name="bitly">  
+      <input type="hidden" id="id" name="id"> 
+     <div id="checkedin"></div>
+      <div id="logins">
+          <datalist id="loginlist"></datalist>
+       <label for="login" id="loginlabel" style="color: black;font-weight: bold;">Aqua Employee Guest is Visiting (Aqua UserID)</label><br>
+<input list="loginlist" type="text" id="login" name="login" placeholder="Enter aqua userid | example:ckonkol" style="background-color: lightyellow;width: 600px;text-transform: lowercase;"><label id="emaillabel" style="color: black;font-weight: bold;">@aqua-aerobic.com</label>
+      </div>
+	      <div id="meetingfields">
+      <label for="fname" style="color: black;font-weight: bold;">Guest First Name</label>
+      <input type="text" id="fname" name="fname" placeholder="Enter guest first name or Company Name if name TBD (Example: WKRP Radio)" style="text-transform: uppercase;">
+      
+       <label for="lname" style="color: black;font-weight: bold;">Guest Last Name</label>
+      <input type="text" id="lname" name="lname" placeholder="Enter guest last name or Guest(#) if name TBD. (Examples: GUEST, GUEST1, GUEST2, etc.)" style="text-transform: uppercase;">
+      
+           <label for="cname" style="color: black;font-weight: bold;">Guest Company Name</label>
+      <input type="text" id="cname" name="cname" placeholder="Enter guest company name or GUEST" style="text-transform: uppercase;">
+
+      <label for="email" style="color: black;font-weight: bold;">Guest Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter guest email address or TBD" style="text-transform: uppercase;">
+      <br>
+      <div id="datedetails">
+        <label for="date" style="color: black;font-weight: bold;">Date & Time Guest is Visiting Aqua: </label>
+         <details>
+  <summary><input type="datetime-local" id="date" name="date" style="font-family: sans-serif;"><i style="color: gray;"> [Click to add/view OR Weekly Recurring Dates]</i></summary> 
+    <b>Individual Dates</b><br />
+             <i style="font-size: small;">If you select individual dates you cannot use below <b>Weekly Recurring Dates</b></i><br/>
+             <ul>Date 2:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date2" name="date2" style="font-family: sans-serif;"> 
+          </ul>
+  <ul>Date 3:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date3" name="date3" style="font-family: sans-serif;"></ul>
+  <ul>Date 4:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date4" name="date4" style="font-family: sans-serif;"></ul>
+  <ul>Date 5:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date5" name="date5" style="font-family: sans-serif;"></ul>
+  <ul>Date 6:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date6" name="date6" style="font-family: sans-serif;"></ul>
+  <ul>Date 7:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date7" name="date7" style="font-family: sans-serif;"></ul>
+  <ul>Date 8:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date8" name="date8" style="font-family: sans-serif;"></ul>
+  <ul>Date 9:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date9" name="date9" style="font-family: sans-serif;"></ul>
+  <ul>Date 10:&nbsp;&nbsp;<input type="datetime-local" id="date10" name="date10" style="font-family: sans-serif;"></ul>
+  <ul>Date 11:&nbsp;&nbsp;<input type="datetime-local" id="date11" name="date11" style="font-family: sans-serif;"></ul>
+  <ul>Date 12:&nbsp;&nbsp;<input type="datetime-local" id="date12" name="date12" style="font-family: sans-serif;"></ul>
+  <br />
+              <details>
+  <summary><i style="color: gray;">Weekly Recurring Dates</summary>
+  <i style="font-size: small;">If you select recurring dates you cannot use above <b>Individual Dates!</b></i><br/><br/>
+  Beginning Date:<br /><input type="date" id="date13" name="date13" style="font-family: sans-serif;"><br />        
+  End Date:<br /><input type="date" id="date14" name="date14" style="font-family: sans-serif;"><br />
+Choose Time:<br />
+<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+  <input type="time" id="rectime" name="rectime" step="900" style="font-family: sans-serif;">
+  <button type="button" id="rectimeClear" style="width:auto; min-width:120px; padding:12px 14px; background-color: #777; margin:0; border:none; border-radius:4px; color:#fff; font-size: large; cursor:pointer;">Clear</button>
+</div>
+<br /><br />
+Choose Recurring Day(s): <div class="weekDays-selector">
+  <input type="checkbox" id="mon" name="mon" class="weekday" />
+  <label for="mon">M</label>
+  <input type="checkbox" id="tue"  name="tue" class="weekday" />
+  <label for="tue">T</label>
+  <input type="checkbox" id="wed"  name="wed" class="weekday" />
+  <label for="wed">W</label>
+  <input type="checkbox" id="thu"  name="thu" class="weekday" />
+  <label for="thu">T</label>
+  <input type="checkbox" id="fri"  name="fri" class="weekday" />
+  <label for="fri">F</label>
+</div>
+</details>
+</details>
+          <br />
+          </div>
+      <label for="message" style="color: black;font-weight: bold;">Aqua Employee Guest is Visiting (Full Name)</label>
+     <textarea id="message" name="message" placeholder="Enter Aqua Employee Full Name" style="height: 30px;font-family: sans-serif;text-transform: uppercase;"></textarea>
+       <canvas id="qrcode"></canvas> 
+    <label id="emaillink" for="emaillink" style="color: black;font-weight: bold;"></label><br>
+    <label id="remove" for="remove" style="color: black;font-weight: bold;font-size: small;"></label><br>
+    <label id="removeYes" for="removeYes" style="color: black;font-weight: bold;font-size: 12px;"></label>
+     <label id="removeNo" for="removeNo" style="color: black;font-weight: bold;font-size: 12px;"></label>
+        </div>
+   <button id="submit_msg" type="button" style="background-color: orangered;">Schedule Guest (All fields required!)</button>
+         <button id="update_db" type="button" style="padding: 5px;">Update Visit</button>
+	 <button id="checkin" type="button" style="padding: 50px;">Tap Here to Check-In/Out</button>
+        <button id="get_id" type="button" style="background-color: navy;">View Scheduled Visits</button>
+       <button id="get_msg" type="button" style="background-color: cornflowerblue;">Go Home</button>
+      <br>
+      <center>
+	       <label id="reset" for="reset" style="color: black;font-weight: bold;font-size: 18px;"></label><br><br>
+       <button id="get_id2" type="button" style="display: block;width: fit-content;background-color: gray;">**View Inactive Scheduled Visits</button>
+      </center>
+    </form>
+      
+            </div>
+       
+    <div id="table"></div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script> 
+      <script src="aqua.js"></script>
+<script>
+/* ============================================================
+   Friendly Time Selector (No timezone conversions)
+   ------------------------------------------------------------
+   - Keeps the original input IDs (date, date2..date12) so aqua.js
+     continues to write to Firebase in the SAME exact format:
+       YYYY-MM-DDTHH:MM  (example: 2025-12-15T08:00)
+   - Replaces native datetime-local UI with:
+       [date picker] [time dropdown] + quick buttons (main date)
+   ============================================================ */
+(function () {
+  const FIELD_IDS = [
+    "date","date2","date3","date4","date5","date6","date7",
+    "date8","date9","date10","date11","date12"
+  ];
+
+  const START_HOUR = 6;
+  const END_HOUR = 17;
+  const STEP_MIN = 15;
+
+  const pad = (n) => String(n).padStart(2, "0");
+
+  function buildTimes() {
+    const out = [];
+    for (let h = START_HOUR; h <= END_HOUR; h++) {
+      for (let m = 0; m < 60; m += STEP_MIN) {
+        if (h === END_HOUR && m > 0) break;
+        out.push(`${pad(h)}:${pad(m)}`);
+      }
+    }
+    return out;
+  }
+
+  const TIMES = buildTimes();
+
+  function toAmPm(hhmm) {
+    if (!hhmm || hhmm.indexOf(":") === -1) return "";
+    const [hStr, mStr] = hhmm.split(":");
+    let h = parseInt(hStr, 10);
+    const m = parseInt(mStr, 10);
+    const ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    if (h === 0) h = 12;
+    return `${h}:${pad(m)} ${ampm}`;
+  }
+
+  function parseHidden(val) {
+    if (!val) return { d: "", t: "" };
+    const d = val.slice(0, 10);
+    let t = "";
+    const tIndex = val.indexOf("T");
+    if (tIndex > -1 && val.length >= tIndex + 6) t = val.slice(tIndex + 1, tIndex + 6);
+    return { d, t };
+  }
+
+  function updateHidden(hidden, d, t) {
+    if (!d) {
+      hidden.value = "";
+    } else {
+      const time = t || "08:00"; // default business time if user picked a date but left time blank
+      hidden.value = `${d}T${time}`;
+    }
+    hidden.dispatchEvent(new Event("input", { bubbles: true }));
+    hidden.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  function updatePreview(previewEl, d, t) {
+    if (!d) {
+      previewEl.textContent = "";
+      return;
+    }
+    const time = t || "08:00";
+    previewEl.textContent = `${d} • ${toAmPm(time)}`;
+  }
+
+  function toYMD(dateObj) {
+    return `${dateObj.getFullYear()}-${pad(dateObj.getMonth() + 1)}-${pad(dateObj.getDate())}`;
+  }
+
+  function enhanceDateTime(hidden) {
+    if (!hidden || hidden.dataset.dtuiDone === "1") return;
+    hidden.dataset.dtuiDone = "1";
+    hidden.classList.add("dtui-hidden");
+
+    const isPrimary = hidden.id === "date";
+
+    const wrap = document.createElement("span");
+    wrap.className = "dtui";
+    wrap.innerHTML = `
+      <span class="dtui-wrap">
+        <input type="date" class="dtui-date" aria-label="Date">
+        <select class="dtui-time" aria-label="Time"></select>
+        
+        <button type="button" class="dtui-clear" title="Clear this date/time" style="width: 100px;color: black;">Clear</button>
+        <span class="dtui-preview" aria-hidden="true"></span>
+      </span>
+    `;
+
+    hidden.insertAdjacentElement("afterend", wrap);
+
+    const dateEl = wrap.querySelector(".dtui-date");
+    const timeEl = wrap.querySelector(".dtui-time");
+    const previewEl = wrap.querySelector(".dtui-preview");
+
+    timeEl.innerHTML =
+      `<option value="">(time)</option>` +
+      TIMES.map((t) => `<option value="${t}">${toAmPm(t)}</option>`).join("");
+
+    function syncFromHidden() {
+      const { d, t } = parseHidden(hidden.value);
+      if (dateEl.value !== d) dateEl.value = d;
+      if (timeEl.value !== t) timeEl.value = t;
+      updatePreview(previewEl, d, t);
+    }
+
+    function syncToHidden() {
+      updateHidden(hidden, dateEl.value, timeEl.value);
+      updatePreview(previewEl, dateEl.value, timeEl.value);
+    }
+
+    dateEl.addEventListener("change", syncToHidden);
+    timeEl.addEventListener("change", syncToHidden);
+
+    wrap.querySelector(".dtui-clear").addEventListener("click", () => {
+      dateEl.value = "";
+      timeEl.value = "";
+      updateHidden(hidden, "", "");
+      updatePreview(previewEl, "", "");
+    });
+
+    if (isPrimary) {
+      wrap.querySelectorAll(".dtui-quick").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const a = btn.dataset.action;
+          const today = new Date();
+          if (a === "today") {
+            dateEl.value = toYMD(today);
+            timeEl.value = "08:00";
+          } else if (a === "tomorrow") {
+            const d = new Date(today);
+            d.setDate(d.getDate() + 1);
+            dateEl.value = toYMD(d);
+            timeEl.value = "08:00";
+          } else if (a === "8") {
+            if (!dateEl.value) dateEl.value = toYMD(today);
+            timeEl.value = "08:00";
+          } else if (a === "9") {
+            if (!dateEl.value) dateEl.value = toYMD(today);
+            timeEl.value = "09:00";
+          }
+          syncToHidden();
+        });
+      });
+    }
+
+    // initial sync + keep in sync when aqua.js populates fields for edits
+    let last = hidden.value;
+    syncFromHidden();
+    setInterval(() => {
+      if (hidden.value !== last) {
+        last = hidden.value;
+        syncFromHidden();
+      }
+    }, 250);
+  }
+
+  function init() {
+    FIELD_IDS.forEach((id) => enhanceDateTime(document.getElementById(id)));
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  // Recurring "Choose Time" clear button (keeps Firebase field formats unchanged)
+  const rtBtn = document.getElementById("rectimeClear");
+  if (rtBtn) {
+    rtBtn.addEventListener("click", function () {
+      const toClear = ["rectime", "date13", "date14"];
+      toClear.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.value = "";
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+
+      ["mon", "tue", "wed", "thu", "fri"].forEach((id) => {
+        const cb = document.getElementById(id);
+        if (!cb) return;
+        cb.checked = false;
+        cb.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+  }
+
+})();
+</script>
+
+<script src="popup.js"></script>
+  </body>
+    </div>
+</html>
+<script type="text/javascript"> 
+// detect user agent
+	 var ua = navigator.userAgent;
+         var isMobile = /Android|webOS|iPhone|iPad|iPod/i.test(ua);
+	var isIPadPro = /Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+        console.log("Is mobile?: " + isMobile);
+	  console.log("Is iPad Pro?: " + isIPadPro);
+	  if (isMobile || isIPadPro) {
+	      document.getElementById("help").style.display = "none"
+	      //alert("on mobile: " + navigator.platform); // display the platform you're on.
+	      var userAgent = navigator.userAgent.toLowerCase();
+	      console.log("Device Type:" + userAgent);
+	  } 
+</script> 
+	<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("fxGG0I_OLtZPd1zPM");
+   })();
+</script>
