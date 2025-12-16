@@ -182,9 +182,9 @@ tr:nth-child(even) {
   End Date:<br /><input type="date" id="date14" name="date14" style="font-family: sans-serif;"><br />
 Choose Time:<br />
 <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-  <input type="time" id="rectime" name="rectime" list="rec-time-list" class="dtui-time" style="background-color: aliceblue; width: auto;">
-<datalist id="rec-time-list">
-  </datalist>
+  <select id="rectime" name="rectime" class="dtui-time" style="background-color: aliceblue; width: auto;">
+    <option value="">(time)</option>
+  </select>
 
  <button type="button" id="rectimeClear" style="width: auto;/* min-width: 75px; */padding:12px 14px;background-color: #f5f5f5;margin:0;border:none;border-radius:4px;color: #8b8383;font-size: large;cursor:pointer;">Clear</button>
 </div>
@@ -323,15 +323,10 @@ Choose Recurring Day(s): <div class="weekDays-selector">
 
     const wrap = document.createElement("span");
     wrap.className = "dtui";
-    // Create a unique ID for the list so we can link the input to it
-    const listId = "time-list-" + Math.random().toString(36).substr(2, 9);
-
     wrap.innerHTML = `
       <span class="dtui-wrap">
         <input type="date" class="dtui-date" aria-label="Date">
-        
-        <input type="time" class="dtui-time" list="${listId}" aria-label="Time">
-        <datalist id="${listId}"></datalist>
+        <select class="dtui-time" aria-label="Time"></select>
         
         <button type="button" class="dtui-clear" title="Clear this date/time" style="width: 100px;color: black;">Clear</button>
         <span class="dtui-preview" aria-hidden="true"></span>
@@ -344,8 +339,9 @@ Choose Recurring Day(s): <div class="weekDays-selector">
     const timeEl = wrap.querySelector(".dtui-time");
     const previewEl = wrap.querySelector(".dtui-preview");
 
-    const dataList = wrap.querySelector("datalist");
-    dataList.innerHTML = TIMES.map((t) => `<option value="${t}"></option>`).join("");
+    timeEl.innerHTML =
+      `<option value="">(time)</option>` +
+      TIMES.map((t) => `<option value="${t}">${toAmPm(t)}</option>`).join("");
 
     function syncFromHidden() {
       const { d, t } = parseHidden(hidden.value);
@@ -410,9 +406,10 @@ Choose Recurring Day(s): <div class="weekDays-selector">
 
     // NEW: Populate the Recurring Time Select Box (rectime) 
     // to match options of the individual date fields.
-    const rectimeList = document.getElementById("rec-time-list");
-    if (rectimeList) {
-        rectimeList.innerHTML = TIMES.map((t) => `<option value="${t}"></option>`).join("");
+    const rectimeSelect = document.getElementById("rectime");
+    if (rectimeSelect && rectimeSelect.tagName === "SELECT") {
+        rectimeSelect.innerHTML = `<option value="">(time)</option>` +
+            TIMES.map((t) => `<option value="${t}">${toAmPm(t)}</option>`).join("");
     }
   }
 
