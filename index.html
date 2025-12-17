@@ -87,7 +87,41 @@ tr:nth-child(even) {
   background: #2AD705;
   color: #ffffff;
 }
-      </style>  
+      
+/* ============================================================
+   Friendly Date/Time UI (keeps hidden datetime-local fields untouched
+   so Firebase format stays EXACTLY: YYYY-MM-DDTHH:MM)
+   ============================================================ */
+.dtui-hidden { display: none !important; }
+.dtui { display: inline-block; margin: 1px 0; }
+.dtui-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.dtui-date, .dtui-time {
+  padding: 6px 5px;
+  font-size: 16px;
+  border: 1px solid #c9c9c9;
+  border-radius: 2px;
+}
+.dtui-time { min-width: 100px; }
+.dtui-quick, .dtui-clear {
+  padding: 6px 5px;
+  font-size: 14px;
+  border: 1px solid #bdbdbd;
+  background: #f5f5f5;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.dtui-quick:hover, .dtui-clear:hover { background: #e9e9e9; }
+.dtui-preview { display: none; }
+@media (max-width: 600px) {
+  .dtui-date, .dtui-time { width: 100%; }
+  .dtui-preview { width: 100%; }
+}
+/* Fix for Date 2 - Date 12 spacing */
+        #datedetails ul {
+          margin-top: 2px;
+          margin-bottom: 2px;
+        }
+</style>  
     <title>Aqua Visitor Managment System</title>
 <link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
   </head>
@@ -125,18 +159,18 @@ tr:nth-child(even) {
       <div id="datedetails">
         <label for="date" style="color: black;font-weight: bold;">Date & Time Guest is Visiting Aqua: </label>
          <details>
-  <summary><input type="datetime-local" id="date" name="date" style="font-family: sans-serif;"><i style="color: gray;"> If time unknown use 8:00am [Click to add/view OR Weekly Recurring Dates]</summary> 
+  <summary><input type="datetime-local" id="date" name="date" style="font-family: sans-serif;"><i style="color: gray;"> [Click to add/view OR Weekly Recurring Dates]</i></summary> 
     <b>Individual Dates</b><br />
              <i style="font-size: small;">If you select individual dates you cannot use below <b>Weekly Recurring Dates</b></i><br/>
-             <ul>Date 2:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date2" name="date2" style="font-family: sans-serif;"> 
+             <ul>Date 2:&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date2" name="date2" style="font-family: sans-serif;"> 
           </ul>
-  <ul>Date 3:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date3" name="date3" style="font-family: sans-serif;"></ul>
-  <ul>Date 4:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date4" name="date4" style="font-family: sans-serif;"></ul>
-  <ul>Date 5:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date5" name="date5" style="font-family: sans-serif;"></ul>
-  <ul>Date 6:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date6" name="date6" style="font-family: sans-serif;"></ul>
-  <ul>Date 7:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date7" name="date7" style="font-family: sans-serif;"></ul>
-  <ul>Date 8:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date8" name="date8" style="font-family: sans-serif;"></ul>
-  <ul>Date 9:&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date9" name="date9" style="font-family: sans-serif;"></ul>
+  <ul>Date 3:&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date3" name="date3" style="font-family: sans-serif;"></ul>
+  <ul>Date 4:&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date4" name="date4" style="font-family: sans-serif;"></ul>
+  <ul>Date 5:&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date5" name="date5" style="font-family: sans-serif;"></ul>
+  <ul>Date 6:&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date6" name="date6" style="font-family: sans-serif;"></ul>
+  <ul>Date 7:&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date7" name="date7" style="font-family: sans-serif;"></ul>
+  <ul>Date 8:&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date8" name="date8" style="font-family: sans-serif;"></ul>
+  <ul>Date 9:&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local" id="date9" name="date9" style="font-family: sans-serif;"></ul>
   <ul>Date 10:&nbsp;&nbsp;<input type="datetime-local" id="date10" name="date10" style="font-family: sans-serif;"></ul>
   <ul>Date 11:&nbsp;&nbsp;<input type="datetime-local" id="date11" name="date11" style="font-family: sans-serif;"></ul>
   <ul>Date 12:&nbsp;&nbsp;<input type="datetime-local" id="date12" name="date12" style="font-family: sans-serif;"></ul>
@@ -146,7 +180,15 @@ tr:nth-child(even) {
   <i style="font-size: small;">If you select recurring dates you cannot use above <b>Individual Dates!</b></i><br/><br/>
   Beginning Date:<br /><input type="date" id="date13" name="date13" style="font-family: sans-serif;"><br />        
   End Date:<br /><input type="date" id="date14" name="date14" style="font-family: sans-serif;"><br />
-Choose Time:<br /><input type="time"  id="rectime" name="rectime" step="900"><br /> <br />
+Choose Time:<br />
+<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+  <input type="time" id="rectime" name="rectime" list="rec-time-list" class="dtui-time" style="background-color: aliceblue; width: auto;">
+<datalist id="rec-time-list">
+  </datalist>
+
+ <button type="button" id="rectimeClear" style="width: auto;/* min-width: 75px; */padding:12px 14px;background-color: #f5f5f5;margin:0;border:none;border-radius:4px;color: #000000;font-size: medium;cursor:pointer;">Clear</button>
+</div>
+<br />
 Choose Recurring Day(s): <div class="weekDays-selector">
   <input type="checkbox" id="mon" name="mon" class="weekday" />
   <label for="mon">M</label>
@@ -193,6 +235,218 @@ Choose Recurring Day(s): <div class="weekDays-selector">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script> 
       <script src="aqua.js"></script>
+<script>
+/* ============================================================
+   Friendly Time Selector (No timezone conversions)
+   ------------------------------------------------------------
+   - Keeps the original input IDs (date, date2..date12) so aqua.js
+     continues to write to Firebase in the SAME exact format:
+       YYYY-MM-DDTHH:MM  (example: 2025-12-15T08:00)
+   - Replaces native datetime-local UI with:
+       [date picker] [time dropdown] + quick buttons (main date)
+   ============================================================ */
+(function () {
+  const FIELD_IDS = [
+    "date","date2","date3","date4","date5","date6","date7",
+    "date8","date9","date10","date11","date12"
+  ];
+
+  const START_HOUR = 6;
+  const END_HOUR = 17;
+  const STEP_MIN = 15;
+
+  const pad = (n) => String(n).padStart(2, "0");
+
+  function buildTimes() {
+    const out = [];
+    for (let h = START_HOUR; h <= END_HOUR; h++) {
+      for (let m = 0; m < 60; m += STEP_MIN) {
+        if (h === END_HOUR && m > 0) break;
+        out.push(`${pad(h)}:${pad(m)}`);
+      }
+    }
+    return out;
+  }
+
+  const TIMES = buildTimes();
+
+  function toAmPm(hhmm) {
+    if (!hhmm || hhmm.indexOf(":") === -1) return "";
+    const [hStr, mStr] = hhmm.split(":");
+    let h = parseInt(hStr, 10);
+    const m = parseInt(mStr, 10);
+    const ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    if (h === 0) h = 12;
+    return `${h}:${pad(m)} ${ampm}`;
+  }
+
+  function parseHidden(val) {
+    if (!val) return { d: "", t: "" };
+    const d = val.slice(0, 10);
+    let t = "";
+    const tIndex = val.indexOf("T");
+    if (tIndex > -1 && val.length >= tIndex + 6) t = val.slice(tIndex + 1, tIndex + 6);
+    return { d, t };
+  }
+
+  function updateHidden(hidden, d, t) {
+    if (!d) {
+      hidden.value = "";
+    } else {
+      const time = t || "08:00"; // default business time if user picked a date but left time blank
+      hidden.value = `${d}T${time}`;
+    }
+    hidden.dispatchEvent(new Event("input", { bubbles: true }));
+    hidden.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  function updatePreview(previewEl, d, t) {
+    if (!d) {
+      previewEl.textContent = "";
+      return;
+    }
+    const time = t || "08:00";
+    previewEl.textContent = `${d} • ${toAmPm(time)}`;
+  }
+
+  function toYMD(dateObj) {
+    return `${dateObj.getFullYear()}-${pad(dateObj.getMonth() + 1)}-${pad(dateObj.getDate())}`;
+  }
+
+  function enhanceDateTime(hidden) {
+    if (!hidden || hidden.dataset.dtuiDone === "1") return;
+    hidden.dataset.dtuiDone = "1";
+    hidden.classList.add("dtui-hidden");
+
+    const isPrimary = hidden.id === "date";
+
+    const wrap = document.createElement("span");
+    wrap.className = "dtui";
+    // Create a unique ID for the list so we can link the input to it
+    const listId = "time-list-" + Math.random().toString(36).substr(2, 9);
+
+    wrap.innerHTML = `
+      <span class="dtui-wrap">
+        <input type="date" class="dtui-date" aria-label="Date">
+        
+        <input type="time" class="dtui-time" list="${listId}" aria-label="Time">
+        <datalist id="${listId}"></datalist>
+        
+        <button type="button" class="dtui-clear" title="Clear this date/time" style="width: 100px;color: black;">Clear</button>
+        <span class="dtui-preview" aria-hidden="true"></span>
+      </span>
+    `;
+
+    hidden.insertAdjacentElement("afterend", wrap);
+
+    const dateEl = wrap.querySelector(".dtui-date");
+    const timeEl = wrap.querySelector(".dtui-time");
+    const previewEl = wrap.querySelector(".dtui-preview");
+
+    const dataList = wrap.querySelector("datalist");
+    dataList.innerHTML = TIMES.map((t) => `<option value="${t}"></option>`).join("");
+
+    function syncFromHidden() {
+      const { d, t } = parseHidden(hidden.value);
+      if (dateEl.value !== d) dateEl.value = d;
+      if (timeEl.value !== t) timeEl.value = t;
+      updatePreview(previewEl, d, t);
+    }
+
+    function syncToHidden() {
+      updateHidden(hidden, dateEl.value, timeEl.value);
+      updatePreview(previewEl, dateEl.value, timeEl.value);
+    }
+
+    dateEl.addEventListener("change", syncToHidden);
+    timeEl.addEventListener("change", syncToHidden);
+
+    wrap.querySelector(".dtui-clear").addEventListener("click", () => {
+      dateEl.value = "";
+      timeEl.value = "";
+      updateHidden(hidden, "", "");
+      updatePreview(previewEl, "", "");
+    });
+
+    if (isPrimary) {
+      wrap.querySelectorAll(".dtui-quick").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const a = btn.dataset.action;
+          const today = new Date();
+          if (a === "today") {
+            dateEl.value = toYMD(today);
+            timeEl.value = "08:00";
+          } else if (a === "tomorrow") {
+            const d = new Date(today);
+            d.setDate(d.getDate() + 1);
+            dateEl.value = toYMD(d);
+            timeEl.value = "08:00";
+          } else if (a === "8") {
+            if (!dateEl.value) dateEl.value = toYMD(today);
+            timeEl.value = "08:00";
+          } else if (a === "9") {
+            if (!dateEl.value) dateEl.value = toYMD(today);
+            timeEl.value = "09:00";
+          }
+          syncToHidden();
+        });
+      });
+    }
+
+    // initial sync + keep in sync when aqua.js populates fields for edits
+    let last = hidden.value;
+    syncFromHidden();
+    setInterval(() => {
+      if (hidden.value !== last) {
+        last = hidden.value;
+        syncFromHidden();
+      }
+    }, 250);
+  }
+
+  function init() {
+    FIELD_IDS.forEach((id) => enhanceDateTime(document.getElementById(id)));
+
+    // NEW: Populate the Recurring Time Select Box (rectime) 
+    // to match options of the individual date fields.
+    const rectimeList = document.getElementById("rec-time-list");
+    if (rectimeList) {
+        rectimeList.innerHTML = TIMES.map((t) => `<option value="${t}"></option>`).join("");
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  // Recurring "Choose Time" clear button (keeps Firebase field formats unchanged)
+  const rtBtn = document.getElementById("rectimeClear");
+  if (rtBtn) {
+    rtBtn.addEventListener("click", function () {
+      const toClear = ["rectime", "date13", "date14"];
+      toClear.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.value = "";
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+
+      ["mon", "tue", "wed", "thu", "fri"].forEach((id) => {
+        const cb = document.getElementById(id);
+        if (!cb) return;
+        cb.checked = false;
+        cb.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+  }
+
+})();
+</script>
+
 <script src="popup.js"></script>
   </body>
     </div>
