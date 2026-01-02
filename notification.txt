@@ -4,7 +4,7 @@
    <ul><li><b>New Feature(s):</b></li></ul>
   <ul style="padding-left:60px">
     <li>Updated <a href="https://aquavisitorsystem.github.io/help/help.html">help page</a></li>
-    <li>Update Calendar/time picker</li>
+    <li>Updated calendar/time picker</li>
   </ul>
   <br>
   <ul><b>View Reports:</b></ul> 
